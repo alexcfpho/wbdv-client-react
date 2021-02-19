@@ -2,57 +2,91 @@ import React from 'react'
 import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CourseTopBar from "./course-top-bar";
+import { Route } from "react-router-dom";
+
+import courseService from "../services/course-service";
+
 
 class CourseManager extends React.Component {
 
     state = {
-        courses: [
-            {title: "CS5610", owner: "john", lastModified: "1/1/2020"},
-            {title: "CS5800", owner: "virgil", lastModified: "2/4/2021"},
-            {title: "CY6620", owner: "gupta", lastModified: "05/8/2022"},
-            {title: "CY2405", owner: "alex", lastModified: "12/21/2021"},
-        ]
+        courses: []
     }
 
+    componentDidMount() {
+        courseService.findAllCourses()
+            .then(courses => this.setState({
+                courses}))
+    }
+
+
+    // @TODO parameterize the title, owner, lastmodified from input / service api?
     addCourse = () => {
         const newCourse = {
-            title: "New Course",
+            title: "alwaysTired",
             owner: "New Owner",
             lastModified: "Never"
         }
-        this.state.courses.push(newCourse)
-        this.setState(this.state)
+        courseService.createCourse(newCourse)
+            .then(course => this.setState(
+                (prevState) => ({
+                    ...prevState,
+                    courses: [
+                        ...prevState.courses,
+                        course
+                    ]
+                })))
     }
 
     deleteCourse = (courseToDelete) => {
-        console.log(courseToDelete)
-        const newCourses = this.state.courses
-            .filter(course => course !== courseToDelete)
-        this.setState({
-            courses: newCourses
-        })
+        courseService.deleteCourse(courseToDelete._id)
+            .then(status => {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    courses: prevState.courses.filter
+                    (course => course !== courseToDelete)
+                }))
+            })
     }
 
-    // editCourse = (courseToEdit) => {
-    //     console.log(courseToEdit)
-    //     const editedCourse = this.state.courses
-    //         .find()
-    // }
+    updateCourse = (course) => {
+        console.log(course)
+        courseService.updateCourse(course._id, course)
+            .then(status => this.setState((prevState) => ({
+                ...prevState,
+                courses: prevState.courses.map(
+                    (c) => c._id === course._id ? course : c)
+            })))
+    }
 
     render() {
-        return(
+        return (
             <div>
-                <CourseTopBar addCourse={this.addCourse} courses={this.state.courses}/>
-                <CourseTable deleteCourse={this.deleteCourse} courses={this.state.courses}/>
-                {/*<CourseGrid deleteCourse={this.deleteCourse} courses={this.state.courses}/>*/}
-                {/*<CourseEditor/>*/}
+                <CourseTopBar
+                    addCourse={this.addCourse}
+                    courses={this.state.courses}/>
+                <Route path="/courses/table">
+                    <CourseTable
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
+                </Route>
+                <Route path="/courses/grid"
+                       render={(props) => {
+                           console.log(props)
+                           return <CourseGrid
+                               deleteCourse={this.deleteCourse}
+                               courses={this.state.courses}/>
+                       }}>
+                </Route>
+                <Route path="/courses/editor"
+                       render={(props) =>
+                           <CourseEditor {...props} />
+                       }>
+                </Route>
             </div>
         )
     }
 }
-
-
-
-export default CourseManager
+    export default CourseManager

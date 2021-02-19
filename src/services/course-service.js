@@ -1,10 +1,43 @@
-// @TODO createCourse(course)
+const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses"
 
-// @TODO findAllCourses()
+export const findAllCourses = () =>
+    fetch(COURSES_URL)
+        .then(response => response.json())
 
 // @TODO findCourseById(id)
+export const findCourseById = (courseId) => {}
 
-// @TODO updateCourse(id, course)
+export const createCourse = (course) =>
+    fetch(COURSES_URL, {
+        method: 'POST',
+        body: JSON.stringify(course),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
 
-// @TODO deleteCourse(id)
+export const updateCourse = (courseId, course) =>
+    fetch(`${COURSES_URL}/${courseId}`, {
+        method: 'PUT',
+        body: JSON.stringify(course),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
 
+export const deleteCourse = (courseId) =>
+    fetch(`${COURSES_URL}/${courseId}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+    findAllCourses,
+    findCourseById,
+    createCourse,
+    updateCourse,
+    deleteCourse
+}
