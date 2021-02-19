@@ -4,7 +4,7 @@ export const findAllCourses = () =>
     fetch(COURSES_URL)
         .then(response => response.json())
 
-// @TODO findCourseById(id)
+// @TODO findCourseById(courseId)
 export const findCourseById = (courseId) => {}
 
 export const createCourse = (course) =>
