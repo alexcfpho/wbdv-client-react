@@ -1,6 +1,7 @@
 import React from "react";
 import {Form, FormControl, InputGroup, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom';
 
 export default class CourseTopBar extends React.Component {
 
@@ -12,6 +13,9 @@ export default class CourseTopBar extends React.Component {
     render() {
         return (
             <div>
+                <Link to="/">
+                    <FontAwesomeIcon icon={"home"} pull={"right"} size={"2x"}/>
+                </Link>
                 <h2>Course Manager</h2>
                 <FontAwesomeIcon icon={"bars"} size={"lg"}/>
                 <Form>
