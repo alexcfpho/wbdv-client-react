@@ -1,18 +1,29 @@
 import React from 'react'
 import CourseCard from "./course-card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom"
 
-// Implementing this functionally so we pass parameters in paren, to "destruct".
-const CourseGrid = ({courses}) =>
+const CourseGrid = ({courses, deleteCourse}) =>
     <div>
-        <h2>Course Grid {courses.length}</h2>
+    <Link to={"/courses/table"}>
+        <FontAwesomeIcon icon={"list"} size={"2x"} pull={"right"}/>
+    </Link>
+        <h2>Course Grid</h2>
+        {/*@TODO Make responsive*/}
         <div className="row">
             {
-                courses.map(course =>
-                <CourseCard course={course}/>
+                courses.map((course, index) =>
+                    <CourseCard
+                        deleteCourse={deleteCourse}
+                        key={index}
+                        course={course}
+                        title={course.title}
+                        owner={course.owner}
+                        lastModified={course.lastModified}
+                    />
                 )
             }
         </div>
     </div>
-
 
 export default CourseGrid
