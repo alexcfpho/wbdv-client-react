@@ -1,11 +1,10 @@
 import React from 'react'
 import CourseRow from "./course-row";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export default class CourseTable
     extends React.Component {
-
-    // Implementing this as a class so we need to pass the parameter (properties)
-    // into an overloaded constructor, as component expects props passed to itself.
 
     constructor(props) {
         super(props);
@@ -15,6 +14,9 @@ export default class CourseTable
     render() {
         return(
             <div>
+                <Link to={"/courses/grid"}>
+                    <FontAwesomeIcon icon={"list"} size={"2x"} pull={"right"}/>
+                </Link>
                 <h2>Course Table</h2>
                 <table className="table table-hover">
                     <thead>
@@ -23,8 +25,8 @@ export default class CourseTable
                         <th className="d-none d-md-table-cell">Owned by</th>
                         <th className="d-none d-md-table-cell">Last modified</th>
                         <th className="d-none d-md-table-cell">
-                            <i className="fas fa-th"></i>
-                            <i className="fas fa-sort-alpha-up"></i>
+                            <FontAwesomeIcon icon={"th"}/>
+                            <FontAwesomeIcon icon={"sort-alpha-up"}/>
                         </th>
                     </tr>
                     </thead>
@@ -33,6 +35,7 @@ export default class CourseTable
                         this.props.courses.map((course, index) =>
                             <CourseRow
                                 deleteCourse={this.props.deleteCourse}
+                                updateCourse={this.props.updateCourse}
                                 key = {index}
                                 course={course}
                                 title= {course.title}
@@ -43,7 +46,6 @@ export default class CourseTable
                     </tbody>
                 </table>
             </div>
-
         )
     }
 }
