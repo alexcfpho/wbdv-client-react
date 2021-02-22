@@ -79,6 +79,7 @@ class CourseManager extends React.Component {
                        render={(props) => {
                            console.log(props)
                            return <CourseGrid
+                               updateCourse={this.updateCourse}
                                deleteCourse={this.deleteCourse}
                                courses={this.state.courses}/>
                        }}>

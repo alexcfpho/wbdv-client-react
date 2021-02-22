@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom"
 import {Row} from "react-bootstrap";
 
-const CourseGrid = ({courses, deleteCourse}) =>
+const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
     <div className="my-2">
         <div className="text-right">
             <FontAwesomeIcon icon={"folder"} order={1} size={"lg"} className="mr-3"/>
@@ -18,6 +18,7 @@ const CourseGrid = ({courses, deleteCourse}) =>
                 courses.map((course, index) =>
                     <CourseCard
                         deleteCourse={deleteCourse}
+                        updateCourse={updateCourse}
                         key={index}
                         course={course}
                         title={course.title}
