@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from 'react-router-dom';
 import {Col} from "react-bootstrap";
+import {faCheck, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 const CourseCard = (
     {
@@ -12,6 +13,7 @@ const CourseCard = (
     }) => {
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
+
     const [hover, setHover] = useState(false)
 
     const onHover = () => {
@@ -29,6 +31,7 @@ const CourseCard = (
             title: newTitle
         }
         updateCourse(newCourse)
+        setNewTitle("")
     }
     return (
         <Col xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -38,15 +41,37 @@ const CourseCard = (
                      className="card-img-top"
                      alt="..."/>
                 <div className="card-body">
+                    {editing && <FontAwesomeIcon icon={faTrash} size={"lg"} pull={"right"}
+                                                 onClick={() => {
+                                                     deleteCourse(course);
+                                                     setEditing(false);
+                                                 }}/>
+                    }
+                    {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} pull={"right"} className="mr-1"
+                                                 onClick={() => saveTitle()}/>}
+
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of
                         the
                         card's
                         content.</p>
                     <img src={``}/>
-                    <Link to={"/courses/editor"} className="btn btn-primary">{title}</Link>
-                    {hover ? <FontAwesomeIcon icon={"edit"} size={"lg"} pull={"right"} className={"mt-3"}
-                                              onClick={() => deleteCourse(course)}/> : null}
+
+                    {
+                        !editing &&
+                        <Link to={"/courses/editor"} className="btn btn-primary">{title}</Link>
+                    }
+                    {
+                        editing &&
+                        <input
+                            onChange={(event) => setNewTitle(event.target.value)}
+                            value={newTitle}
+                            className="form-control"/>
+                    }
+                    {hover && !editing ?
+                        <FontAwesomeIcon icon={"edit"} size={"lg"} pull={"right"} color={"blue"} className={"mt-3"}
+                                         onClick={() => setEditing(true)}/> : null}
+
                 </div>
             </div>
         </Col>
