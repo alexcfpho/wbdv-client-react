@@ -5,7 +5,14 @@ import {Link} from "react-router-dom";
 
 
 const CourseRow = (
-    {deleteCourse, updateCourse, course, lastModified, title, owner}) => {
+    {
+        deleteCourse,
+        updateCourse,
+        course,
+        lastModified,
+        title,
+        owner
+    }) => {
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
 

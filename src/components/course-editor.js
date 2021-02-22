@@ -1,10 +1,10 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const CourseEditor = ({props}) =>
+const CourseEditor = ({history}) =>
     <div>
-        <FontAwesomeIcon icon={"arrow-left"} size={"2x" } pull={"right"}
-                         onClick={() => props.history.goBack()}/>
+        <FontAwesomeIcon icon={"arrow-left"} size={"2x"} pull={"right"}
+                         onClick={() => history.goBack()}/>
         <h2>editor html to go here</h2>
     </div>
 
