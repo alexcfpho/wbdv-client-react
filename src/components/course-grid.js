@@ -1,16 +1,19 @@
 import React from 'react'
 import CourseCard from "./course-card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom"
+import {Row} from "react-bootstrap";
 
 const CourseGrid = ({courses, deleteCourse}) =>
-    <div>
-    <Link to={"/courses/table"}>
-        <FontAwesomeIcon icon={"list"} size={"2x"} pull={"right"}/>
-    </Link>
-        <h2>Course Grid</h2>
-        {/*@TODO Make responsive*/}
-        <div className="row">
+    <div className="my-2">
+        <div className="text-right">
+            <FontAwesomeIcon icon={"folder"} order={1} size={"lg"} className="mr-3"/>
+            <FontAwesomeIcon icon={"sort-alpha-up"} order={2} size={"lg"} className="mr-3"/>
+            <Link to={"/courses/table"}>
+                <FontAwesomeIcon icon={"list"} order={3} size={"lg"} className="mr-1"/>
+            </Link>
+        </div>
+        <Row>
             {
                 courses.map((course, index) =>
                     <CourseCard
@@ -23,7 +26,7 @@ const CourseGrid = ({courses, deleteCourse}) =>
                     />
                 )
             }
-        </div>
+        </Row>
     </div>
 
 export default CourseGrid

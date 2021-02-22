@@ -1,21 +1,24 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from 'react-router-dom';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from 'react-router-dom';
+import {Col} from "react-bootstrap";
 
 const CourseCard = ({deleteCourse, course, title, owner, lastModified}) =>
-    <div className="col-4">
-        <div className="card">
-            <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png" className="card-img-top" alt="..."/>
+    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+        <div className="card mt-4">
+            <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png" className="card-img-top"
+                 alt="..."/>
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
                     content.</p>
                 <img src={``}/>
                 <Link to={"/courses/editor"} className="btn btn-primary">{title}</Link>
                 <FontAwesomeIcon icon={"trash"} size={"lg"}
-                    onClick={() => deleteCourse(course)}/>
+                                 onClick={() => deleteCourse(course)}/>
             </div>
         </div>
-    </div>
+    </Col>
 
 export default CourseCard
