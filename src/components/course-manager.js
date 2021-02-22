@@ -3,38 +3,40 @@ import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
 import CourseTopBar from "./course-top-bar";
-import { Route } from "react-router-dom";
+import {Route} from "react-router-dom";
 
 import courseService from "../services/course-service";
 
-
 class CourseManager extends React.Component {
 
-    state = {
-        courses: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            courses: []
+        }
     }
 
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({
-                courses}))
+                courses
+            }))
     }
 
-
-    // @TODO parameterize the title, owner, lastmodified from input / service api?
-    addCourse = () => {
-        const newCourse = {
-            title: "alwaysTired",
-            owner: "New Owner",
-            lastModified: "Never"
+    //@TODO add input validation for empty string
+    createCourse = (courseObj) => {
+        const aCourse = {
+            title: courseObj.title,
+            owner: courseObj.owner,
+            lastModified: courseObj.lastModified
         }
-        courseService.createCourse(newCourse)
-            .then(course => this.setState(
-                (prevState) => ({
-                    ...prevState,
+        courseService.createCourse(aCourse)
+            .then(c => this.setState(
+                (previousState) => ({
+                    ...previousState,
                     courses: [
-                        ...prevState.courses,
-                        course
+                        ...previousState.courses,
+                        c
                     ]
                 })))
     }
@@ -64,8 +66,9 @@ class CourseManager extends React.Component {
         return (
             <div>
                 <CourseTopBar
-                    addCourse={this.addCourse}
-                    courses={this.state.courses}/>
+                    courses={this.state.courses}
+                    createCourse={this.createCourse}
+                />
                 <Route path="/courses/table">
                     <CourseTable
                         updateCourse={this.updateCourse}
