@@ -14,6 +14,7 @@ const CourseTopBar = (
             lastModified: new Date().toLocaleDateString()
         }
         createCourse(aCourse)
+        setNewTitle("")
     }
     return (
         <div className="mt-2 no-gutters">
