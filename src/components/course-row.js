@@ -44,8 +44,14 @@ const CourseRow = (
             <td className="d-none d-lg-table-cell">{lastModified}</td>
             <td className="text-right">
                 {!editing && <FontAwesomeIcon icon={faEdit} size={"lg"} onClick={() => setEditing(true)}/>}
-                {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} className="mr-2" onClick={() => saveTitle()}/>}
-                {editing && <FontAwesomeIcon icon={faTrash} size={"lg"} onClick={() => deleteCourse(course)}/>}
+                {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} className="mr-2"
+                                             onClick={() => saveTitle()}/>
+                }
+                {editing && <FontAwesomeIcon icon={faTrash} size={"lg"} onClick={() => {
+                    deleteCourse(course);
+                    setEditing(false);
+                }}/>
+                }
             </td>
         </tr>
     )
