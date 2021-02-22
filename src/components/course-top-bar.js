@@ -16,15 +16,15 @@ const CourseTopBar = (
         createCourse(aCourse)
     }
     return (
-        <div>
+        <div className="mt-2 no-gutters">
             <Row>
-                <Col xs={1} sm={1} md={1} lg={1}>
+                <Col xs={1}>
                     <FontAwesomeIcon className="mt-2" icon={"bars"} size={"lg"}/>
                 </Col>
-                <Col lg={4} className="d-none d-lg-block">
-                    <h2>Course Manager</h2>
+                <Col lg={3} className="d-none d-lg-block">
+                    <h3>Course Manager</h3>
                 </Col>
-                <Col xs={8} sm={8} md={9} lg={5}>
+                <Col xs={8} lg={6} className={"mb-2"}>
                     <Form>
                         <Form.Label htmlFor={"courseName"} srOnly>
                             Course Name
@@ -40,12 +40,12 @@ const CourseTopBar = (
                         />
                     </Form>
                 </Col>
-                <Col xs={3} sm={3} md={2} lg={2} className={"pull-right"}>
-                    <Link to="/">
-                        <FontAwesomeIcon icon={"home"} size={"2x"} pull={"right"}/>
-                    </Link>
-                    <FontAwesomeIcon icon={"plus-circle"} size={"2x"} pull={"right"} color={"red"}
+                <Col xs={3} lg={2} className="text-right">
+                    <FontAwesomeIcon icon={"plus-circle"} size={"2x"} color={"red"} className={"mr-1"}
                                      onClick={() => newCourse()}/>
+                    <Link to="/">
+                        <FontAwesomeIcon icon={"home"} size={"2x"} className={"mr-2"}/>
+                    </Link>
                 </Col>
             </Row>
         </div>

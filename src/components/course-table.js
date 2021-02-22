@@ -1,10 +1,9 @@
 import React from 'react'
 import CourseRow from "./course-row";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 
-export default class CourseTable
-    extends React.Component {
+class CourseTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,21 +11,21 @@ export default class CourseTable
     }
 
     render() {
-        return(
+        return (
             <div>
-                <Link to={"/courses/grid"}>
-                    <FontAwesomeIcon icon={"list"} size={"2x"} pull={"right"}/>
-                </Link>
-                <h2>Course Table</h2>
                 <table className="table table-hover">
                     <thead>
                     <tr>
-                        <th className="d-sm-table-cell">Title</th>
+                        <th>Title</th>
                         <th className="d-none d-md-table-cell">Owned by</th>
-                        <th className="d-none d-md-table-cell">Last modified</th>
-                        <th className="d-none d-md-table-cell">
-                            <FontAwesomeIcon icon={"th"}/>
-                            <FontAwesomeIcon icon={"sort-alpha-up"}/>
+                        <th className="d-none d-lg-table-cell">Last modified</th>
+
+                        <th className="text-right">
+                            <FontAwesomeIcon icon={"folder"} order={1} size={"lg"} className="mr-3"/>
+                            <FontAwesomeIcon icon={"sort-alpha-up"} order={2} size={"lg"} className="mr-3"/>
+                            <Link to={"/courses/grid"}>
+                                <FontAwesomeIcon icon={"th"} order={3} size={"lg"} className="mr-1"/>
+                            </Link>
                         </th>
                     </tr>
                     </thead>
@@ -49,3 +48,5 @@ export default class CourseTable
         )
     }
 }
+
+export default CourseTable

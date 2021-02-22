@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, {useState} from 'react'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const CourseRow = (
@@ -19,7 +19,7 @@ const CourseRow = (
     }
     return (
         <tr>
-            <td>
+            <td className="d-md-table-cell">
                 {
                     !editing &&
                     <Link to={"/courses/editor"}>
@@ -32,14 +32,13 @@ const CourseRow = (
                         value={newTitle}
                         className="form-control"/>
                 }
-
             </td>
-            <td>{owner}</td>
-            <td>{lastModified}</td>
-            <td>
-                <FontAwesomeIcon icon={faTrash} size={"lg"} onClick={() => deleteCourse(course)}/>
+            <td className="d-none d-md-table-cell">{owner}</td>
+            <td className="d-none d-lg-table-cell">{lastModified}</td>
+            <td className="text-right">
                 {!editing && <FontAwesomeIcon icon={faEdit} size={"lg"} onClick={() => setEditing(true)}/>}
-                {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} onClick={() => saveTitle()}/>}
+                {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} className="mr-2" onClick={() => saveTitle()}/>}
+                {editing && <FontAwesomeIcon icon={faTrash} size={"lg"} onClick={() => deleteCourse(course)}/>}
             </td>
         </tr>
     )
