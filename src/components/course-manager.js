@@ -1,11 +1,12 @@
 import React from 'react'
-import CourseTable from "./course-table";
-import CourseGrid from "./course-grid";
-import CourseEditor from "./course-editor";
+import CourseTable from "./course-table/course-table";
+import CourseGrid from "./course-grid/course-grid";
+import CourseEditor from "./course-editor/course-editor";
 import CourseTopBar from "./course-top-bar";
 import {Route} from "react-router-dom";
 
 import courseService from "../services/course-service";
+import Switch from "react-bootstrap/Switch";
 
 class CourseManager extends React.Component {
 
@@ -65,30 +66,34 @@ class CourseManager extends React.Component {
     render() {
         return (
             <div>
-                <CourseTopBar
-                    courses={this.state.courses}
-                    createCourse={this.createCourse}
-                />
-                <Route path="/courses/table">
-                    <CourseTable
-                        updateCourse={this.updateCourse}
-                        deleteCourse={this.deleteCourse}
-                        courses={this.state.courses}/>
-                </Route>
-                <Route path="/courses/grid"
-                       render={(props) => {
-                           console.log(props)
-                           return <CourseGrid
-                               updateCourse={this.updateCourse}
-                               deleteCourse={this.deleteCourse}
-                               courses={this.state.courses}/>
-                       }}>
-                </Route>
-                <Route path="/courses/editor"
-                       render={(props) =>
-                           <CourseEditor {...props} />
-                       }>
-                </Route>
+                <Switch>
+                    <Route exact path={["/courses/table", "/courses/grid"]}>
+                        <CourseTopBar
+                            courses={this.state.courses}
+                            createCourse={this.createCourse}
+                        />
+                    </Route>
+                    <Route path="/courses/editor"
+                           render={(props) =>
+                               <CourseEditor {...props} />
+                           }>
+                    </Route>
+                    <Route path={["/courses/table", "/courses"]} exact={true}>
+                        <CourseTable
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}/>
+                    </Route>
+                    <Route path="/courses/grid"
+                           render={(props) => {
+                               console.log(props)
+                               return <CourseGrid
+                                   updateCourse={this.updateCourse}
+                                   deleteCourse={this.deleteCourse}
+                                   courses={this.state.courses}/>
+                           }}>
+                    </Route>
+                </Switch>
             </div>
         )
     }
