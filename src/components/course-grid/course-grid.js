@@ -1,10 +1,10 @@
 import React from 'react'
-import CourseCard from "../course-card/course-card";
+import CourseCard from "./course-card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom"
 import {Row} from "react-bootstrap";
 
-import './course-grid/course-grid.css'
+import './course-grid.css'
 
 const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
     <div className="my-2">

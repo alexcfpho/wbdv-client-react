@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from 'react-router-dom';
 import {Col} from "react-bootstrap";
-import {faCheck, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
 
 const CourseCard = (
     {
@@ -41,7 +41,7 @@ const CourseCard = (
                      className="card-img-top"
                      alt="..."/>
                 <div className="card-body">
-                    {editing && <FontAwesomeIcon icon={faTrash} size={"lg"} pull={"right"}
+                    {editing && <FontAwesomeIcon icon={"trash"} size={"lg"} pull={"right"}
                                                  onClick={() => {
                                                      deleteCourse(course);
                                                      setEditing(false);
@@ -69,7 +69,7 @@ const CourseCard = (
                             className="form-control"/>
                     }
                     {hover && !editing ?
-                        <FontAwesomeIcon icon={"edit"} size={"lg"} pull={"right"} color={"blue"} className={"mt-3"}
+                        <FontAwesomeIcon icon={"edit"} size={"lg"} pull={"right"} color="purple" className={"mt-3"}
                                          onClick={() => setEditing(true)}/> : null}
 
                 </div>

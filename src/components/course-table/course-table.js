@@ -3,6 +3,8 @@ import CourseRow from "./course-row";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 
+import '../../styles.css'
+
 class CourseTable extends React.Component {
 
     constructor(props) {
@@ -20,7 +22,7 @@ class CourseTable extends React.Component {
                         <th className="d-none d-md-table-cell">Owned by</th>
                         <th className="d-none d-lg-table-cell">Last modified</th>
 
-                        <th className="text-right">
+                        <th className="wbdv-icons-body text-right">
                             <FontAwesomeIcon icon={"folder"} order={1} size={"lg"} className="mr-3"/>
                             <FontAwesomeIcon icon={"sort-alpha-up"} order={2} size={"lg"} className="mr-3"/>
                             <Link to={"/courses/grid"}>

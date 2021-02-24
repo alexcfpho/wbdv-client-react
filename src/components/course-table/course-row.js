@@ -43,7 +43,8 @@ const CourseRow = (
             <td className="d-none d-md-table-cell">{owner}</td>
             <td className="d-none d-lg-table-cell">{lastModified}</td>
             <td className="text-right">
-                {!editing && <FontAwesomeIcon icon={faEdit} size={"lg"} onClick={() => setEditing(true)}/>}
+                {!editing && <FontAwesomeIcon icon={faEdit} size={"lg"} className={"wbdv-icons-body"}
+                                              onClick={() => setEditing(true)}/>}
                 {editing && <FontAwesomeIcon icon={faCheck} size={"lg"} className="mr-2"
                                              onClick={() => saveTitle()}/>
                 }

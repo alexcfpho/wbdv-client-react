@@ -17,15 +17,15 @@ const CourseTopBar = (
         setNewTitle("")
     }
     return (
-        <div className="mt-2 no-gutters">
+        <div className="mt-4">
             <Row>
                 <Col xs={1}>
-                    <FontAwesomeIcon className="mt-2" icon={"bars"} size={"lg"}/>
+                    <FontAwesomeIcon className="" icon={"bars"} size={"lg"}/>
                 </Col>
                 <Col lg={3} className="d-none d-lg-block">
                     <h3>Course Manager</h3>
                 </Col>
-                <Col xs={8} lg={6} className={"mb-2"}>
+                <Col xs={8} lg={6} className={"mb-4"}>
                     <Form>
                         <Form.Label htmlFor={"courseName"} srOnly>
                             Course Name
