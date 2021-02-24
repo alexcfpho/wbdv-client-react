@@ -1,0 +1,180 @@
+/*
+Override the user's root font size to the standard.
+They recommend overriding user's font in absolute forcing them to zoom...
+https://adamwathan.me/dont-use-em-for-media-queries/
+
+They are nicer here and recommend using a percentage.
+https://engageinteractive.co.uk/blog/em-vs-rem-vs-px
+
+https://ryanfeigenbaum.com/easy-responsive-typography/
+
+https://zellwk.com/blog/rem-vs-em/
+ */
+
+html {
+    background-color: #e0bbe4;
+}
+
+/* Responsive text at different breakpoint sizes, but relative */
+/*https://zellwk.com/blog/media-query-units/*/
+
+@media screen and (min-width: 20em) and (max-width: 50em) {
+    html {
+        font-size: 1rem;
+    }
+
+    body {
+        font-size: 1.1rem;
+    }
+
+    .col-form-label {
+        margin-right: 2em;
+    }
+}
+
+@media screen and (min-width: 50em) and (max-width: 100em) {
+    html {
+        font-size: 1rem;
+    }
+
+    body {
+        font-size: 1.2rem;
+        margin-left: 2em;
+    }
+
+    .wbdv-field {
+        margin-top: 0.5em;
+    }
+
+}
+
+@media screen and (min-width: 100em) {
+    html {
+        font-size: 1rem;
+    }
+
+    body {
+        font-size: 1.3rem;
+    }
+
+    .wbdv-field {
+        margin-top: 0.75em;
+    }
+}
+
+body, .wbdv-icons-body {
+    background-color: inherit;
+    color: #957dad;
+}
+
+.wbdv-field {
+    margin-top: 0.75em;
+}
+
+.wbdv-field:focus {
+    background-color: #f7f5f9;
+}
+
+.btn-primary {
+    background-color: #957dad;
+    color: #FEC8D8;
+    border-color: #7d7dad;
+    box-shadow: none;
+}
+
+.btn-primary:hover {
+    background-color: #644d7b;
+    border-color: #503e63;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: white;
+    background-color: #3d2f4a;
+    border-color: #644d7b;
+    /* Remove the ugly default blue border/ring around button */
+    outline: 0 none;
+}
+
+/* Not a true focus, this overrides the active click and acts as focus..*/
+.btn-primary:not(:disabled):not(.disabled):focus {
+    box-shadow: 0 0 5px #ede9f1;
+    background-color: #b2a1c4;
+}
+
+.btn-success {
+    background-color: #47c875;
+    color: #f7f5f9;
+    border-color: #85da9c;
+    outline: 0 none;
+}
+
+/* border is shade, background is light shade */
+.btn-success:hover {
+    background-color: #35b262;
+    border-color: #2c9451;
+}
+
+/* pastel red */
+.btn-danger {
+    background-color: #ff6961;
+    color: #f7f5f9;
+    border-color: #ffb2ae;
+    outline: 0 none;
+}
+
+/* pastel red's tint */
+.btn-danger:hover {
+    background-color: #ff443a;
+    color: #f7f5f9;
+}
+
+/*https://www.lifewire.com/override-the-default-link-colors-3468274*/
+
+a:link {
+    color: #6f5688;
+}
+
+a:visited {
+    color: #6f5688;
+}
+
+a:active {
+    color: #7d7dad;
+}
+
+.navbar-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Using nav-item instead of nav-link fills the entire element square */
+
+.nav-pills .nav-item:not(.active) {
+    background-color: #6d7fcc;
+}
+
+.nav-pills .nav-item a {
+    color: #fff;
+}
+
+/* This targets the list item then combines two target classes */
+.nav-pills > .nav-item > .nav-link.active {
+    background-color: #30418a;
+}
+
+/* Both methods with child/sibling selector work */
+
+.nav-pills > .nav-item a:hover {
+    background-color: #475ebf;
+}
+
+.nav-pills > .nav-item a:focus {
+    background-color: #909ed8;
+}
+
+.fa-check {
+    color: #3cb371;
+}
+
+.fa-trash {
+    color: #e30022;
+}
