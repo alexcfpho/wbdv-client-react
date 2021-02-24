@@ -1,12 +1,5 @@
 const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/courses"
 
-export const findAllCourses = () =>
-    fetch(COURSES_URL)
-        .then(response => response.json())
-
-// @TODO findCourseById(courseId)
-export const findCourseById = (courseId) => {}
-
 export const createCourse = (course) =>
     fetch(COURSES_URL, {
         method: 'POST',
@@ -15,6 +8,14 @@ export const createCourse = (course) =>
             'content-type': 'application/json'
         }
     })
+        .then(response => response.json())
+
+export const findAllCourses = () =>
+    fetch(COURSES_URL)
+        .then(response => response.json())
+
+export const findCourseById = (courseId) =>
+    fetch(`${COURSES_URL}/${courseId}`)
         .then(response => response.json())
 
 export const updateCourse = (courseId, course) =>
@@ -35,9 +36,9 @@ export const deleteCourse = (courseId) =>
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+    createCourse,
     findAllCourses,
     findCourseById,
-    createCourse,
     updateCourse,
     deleteCourse
 }
