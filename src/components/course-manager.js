@@ -24,7 +24,6 @@ class CourseManager extends React.Component {
             }))
     }
 
-    //@TODO add input validation for empty string
     createCourse = (courseObj) => {
         const aCourse = {
             title: courseObj.title,
