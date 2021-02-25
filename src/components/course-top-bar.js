@@ -5,16 +5,16 @@ import {Link} from 'react-router-dom';
 
 const CourseTopBar = (
     {createCourse}) => {
-
     const [newTitle, setNewTitle] = useState('')
+
     const newCourse = () => {
         const aCourse = {
-            title: newTitle,
+            title: newTitle ? newTitle : 'New Course',
             owner: 'defaultNewOwner',
             lastModified: new Date().toLocaleDateString()
         }
         createCourse(aCourse)
-        setNewTitle("")
+        setNewTitle('')
     }
     return (
         <div className="mt-4">
@@ -49,7 +49,15 @@ const CourseTopBar = (
                     </Link>
                 </Col>
             </Row>
+            <div>
+                <FontAwesomeIcon icon={"plus-circle"} color={"red"} size={"4x"}
+                                 className="my-plus-stuck-at-bottom-right mr-1"
+                                 onClick={() => {
+                                     newCourse();
+                                 }}/>
+            </div>
         </div>
+
     )
 }
 
