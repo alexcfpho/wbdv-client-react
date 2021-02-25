@@ -9,6 +9,14 @@ import './course-grid.css'
 const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
     <div className="my-2">
         <div className="text-right">
+            <div className={"row text-left"}>
+                <div className={"col-6"}>
+                    <h4>Recent Documents</h4>
+                </div>
+                <div className={"col-3 d-none d-md-inline"}>
+                    <h4>Owned by me</h4>
+                </div>
+            </div>
             <FontAwesomeIcon icon={"folder"} order={1} size={"lg"} className="mr-3"/>
             <FontAwesomeIcon icon={"sort-alpha-up"} order={2} size={"lg"} className="mr-3"/>
             <Link to={"/courses/table"}>
@@ -29,9 +37,6 @@ const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
                     />
                 )
             }
-        </Row>
-        <Row>
-            <FontAwesomeIcon icon={"plus-circle"} color={"red"} size={"4x"} className="my-plus-stuck-at-bottom-right"/>
         </Row>
     </div>
 
