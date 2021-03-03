@@ -29,7 +29,7 @@ const CourseRow = (
             <td className="d-md-table-cell">
                 {
                     !editing &&
-                    <Link to={"/courses/editor"}>
+                    <Link to={`/courses/editor/${course._id}`}>
                         {title}</Link>
                 }
                 {
