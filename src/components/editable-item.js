@@ -4,12 +4,15 @@ import {Link} from "react-router-dom";
 
 const EditableItem = (
     {
+        // This to is overridden when passed the prop depending where the Component is invoked.
         to = "/somewhere/to/go",
         deleteItem,
         updateItem,
-        item = {title: "Some Title", _id: "ABC"}
+        // @TODO WIP
+        // findItem,
+        item = {title: "Some Title", _id: "ABC"},
+        active,
     }) => {
-
     const [editing, setEditing] = useState(false)
     const [cachedItem, setCachedItem] = useState(item)
     return (
@@ -17,11 +20,11 @@ const EditableItem = (
             {
                 !editing &&
                 <>
-                    <Link className={"nav-link"} href={to}>
+                    <Link className={`nav-link ${active ? 'active' : ''} `} to={to}>
                         {item.title}
+                        {/*{JSON.stringify(active)}*/}
                         <FontAwesomeIcon icon={"edit"} onClick={() => setEditing(true)} pull={"right"}/>
                     </Link>
-
                 </>
             }
             {
@@ -39,6 +42,8 @@ const EditableItem = (
                                      onClick={() => {
                                          setEditing(false);
                                          updateItem(cachedItem)
+                                         // @TODO WIP
+                                         // findItem(item._id)
                                      }}/>
                     <FontAwesomeIcon icon={"times"} pull={"right"}
                                      onClick={() => deleteItem(item)}/>
