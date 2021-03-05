@@ -1,15 +1,10 @@
 const initialModules = {
-    modules: [
-        // {_id: 123, title: "Module 123"},
-        // {_id: 234, title: "Module 234"},
-        // {_id: 345, title: "Module 345"}
-    ]
+    modules: []
 }
 
 const moduleReducer = (state = initialModules, action) => {
     switch (action.type) {
         case "CREATE_MODULE":
-            // alert("Create Module reducer")
             const newState = {
                 modules: [
                     ...state.modules,
@@ -23,7 +18,6 @@ const moduleReducer = (state = initialModules, action) => {
                 modules: action.modules
             }
         case "DELETE_MODULE":
-            // alert('delete module')
             const newState1 = {
                 modules: state.modules.filter(module => {
                     if (module._id === action.moduleToDelete._id) {

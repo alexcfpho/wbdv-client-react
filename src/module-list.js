@@ -12,25 +12,27 @@ const ModuleList = (
         createModule,
         deleteModule,
         updateModule,
-        findModulesForCourse = (courseId) => console.log(courseId)
+        findModulesForCourse
     }) => {
-    const {courseId} = useParams()
+    const {courseId, moduleId} = useParams()
     useEffect(() => {
-        alert(courseId)
         findModulesForCourse(courseId)
     }, [])
     return (
         <div>
-            <h3>Modules</h3>
+            <h3>Modules {moduleId}</h3>
             <ul className="list-group text-white wbdv-module-list">
                 {
                     listOfModules.map(module =>
-                        <li className="list-group-item wbdv-module-item">
+                        // is object id of module === to the URL moduleId...
+                        <li className={`list-group-item wbdv-module-item ${module._id === moduleId ? 'active' : ''}`}>
                             <EditableItem
                                 to={`/courses/editor/${courseId}/${module._id}`}
                                 deleteItem={deleteModule}
                                 updateItem={updateModule}
-                                item={module}/>
+                                item={module}
+                                key={module._id}
+                            />
                         </li>
                     )
                 }
@@ -52,7 +54,7 @@ const stpm = (state) => {
 const dptm = (dispatch) => {
     return {
         createModule: (courseId) => {
-            moduleService.createModuleForCourse(courseId, {title: "New Module Title"})
+            moduleService.createModuleForCourse(courseId, {title: "New Module"})
                 .then(theActualModule => dispatch({
                     type: "CREATE_MODULE",
                     module: theActualModule
