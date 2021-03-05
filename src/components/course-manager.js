@@ -66,31 +66,38 @@ class CourseManager extends React.Component {
         return (
             <div>
                 <Switch>
+
+                    {/* TOP BAR */}
                     <Route exact path={["/courses/table", "/courses/grid"]}>
                         <CourseTopBar
                             courses={this.state.courses}
                             createCourse={this.createCourse}
                         />
                     </Route>
+
+                    {/* EDITOR */}
                     <Route path={[
                         "/courses/editor/:courseId",
-                        "/courses/editor/:courseId:moduleId",
+                        "/courses/editor/:courseId/:moduleId",
                         "/courses/editor/:courseId/:moduleId/:lessonId"]}
-                           render={(props) => <CourseEditor {...props} />}>
+                           exact={true}
+                           render={(props) => <CourseEditor {...props}/>}>
                     </Route>
+
+                    {/* TABLE & COURSES */}
                     <Route path={["/courses/table", "/courses"]} exact={true}>
                         <CourseTable
                             updateCourse={this.updateCourse}
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </Route>
-                    <Route path="/courses/grid"
-                           render={(props) => {
-                               return <CourseGrid
-                                   updateCourse={this.updateCourse}
-                                   deleteCourse={this.deleteCourse}
-                                   courses={this.state.courses}/>
-                           }}>
+
+                    {/* GRID */}
+                    <Route path="/courses/grid">
+                        <CourseGrid
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}/>
                     </Route>
                 </Switch>
             </div>
