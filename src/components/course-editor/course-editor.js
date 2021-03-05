@@ -20,7 +20,8 @@ const store = createStore(reducer)
 
 const CourseEditor = ({history}) => {
 
-    const {courseId, moduleId} = useParams();
+    // Took out module and lessonId since haven't found a need yet.
+    const {courseId} = useParams();
 
     return (
         <Provider store={store}>
@@ -31,7 +32,7 @@ const CourseEditor = ({history}) => {
                             <FontAwesomeIcon icon={"arrow-left"} size="lg" pull={"left"}
                                              className={"mr-4 wbdv-back-btn"}
                                              onClick={() => history.goBack()}/>
-                            Course Editor {courseId} {moduleId}
+                            Course Editor {courseId}
                         </h3>
 
                         <Link to={"/courses/"}>
@@ -39,7 +40,11 @@ const CourseEditor = ({history}) => {
                         </Link>
 
                     </div>
-                    <LessonTabs/>
+                    <div className="col-8">
+                        {/*<div className="row">*/}
+                        <LessonTabs/>
+                        {/*</div>*/}
+                    </div>
                 </div>
                 {/* Modules */}
                 <div className="row">
