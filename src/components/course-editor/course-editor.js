@@ -5,15 +5,18 @@ import '../../styles.css'
 
 import {Link, useParams} from "react-router-dom";
 import {combineReducers, createStore} from "redux";
-import moduleReducer from "../../reducers/modules-reducer";
 import {Provider} from "react-redux";
 import ModuleList from "../../module-list";
 import LessonTabs from "../../lesson-tabs";
+import TopicPills from "../../topic-pills";
+import moduleReducer from "../../reducers/modules-reducer";
 import lessonReducer from "../../reducers/lessons-reducer";
+import topicReducer from "../../reducers/topic-reducer"
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
-    lessonReducer: lessonReducer
+    lessonReducer: lessonReducer,
+    topicReducer: topicReducer
 })
 
 const store = createStore(reducer)
@@ -53,33 +56,7 @@ const CourseEditor = ({history}) => {
                     </div>
                     {/* Topics */}
                     <div className="col-8">
-                        <ul className="nav nav-pills wbdv-topic-pill-list mt-3">
-                            <li className="nav-item wbdv-topic-pill-list">
-                                <a href="#" className="nav-link text-white m-2 wbdv-topic-pill">
-                                    Topic 1
-                                </a>
-                            </li>
-                            <li className="nav-item wbdv-topic-pill-list">
-                                <a href="#" className="nav-link text-white m-2 active wbdv-topic-pill">
-                                    Topic 2
-                                </a>
-                            </li>
-                            <li className="nav-item wbdv-topic-pill-list">
-                                <a href="#" className="nav-link text-white m-2 wbdv-topic-pill">
-                                    Topic 3
-                                </a>
-                            </li>
-                            <li className="nav-item wbdv-topic-pill-list">
-                                <a href="#" className="nav-link text-white m-2 wbdv-topic-pill">
-                                    Topic 4
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link text-white m-2 wbdv-topic-add-btn">
-                                    <i className="fas fa-plus"/>
-                                </a>
-                            </li>
-                        </ul>
+                        <TopicPills/>
                         {/* Widgets */}
                         <div>
                             <div className="row mt-3">
