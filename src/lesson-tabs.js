@@ -21,7 +21,7 @@ const LessonTabs = (
         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
         }
-    }, [moduleId])
+    }, [findLessonsForModule, moduleId])
 
     return (
         <div>
@@ -96,9 +96,9 @@ const dtpm = (dispatch) => ({
                 lessonToDelete: lesson
             }))
     },
-    updateLesson: (lessonId, lesson) => {
-        lessonService.updateLesson(lessonId, lesson)
-            .then(lesson => dispatch({
+    updateLesson: (lesson) => {
+        lessonService.updateLesson(lesson._id, lesson)
+            .then(status => dispatch({
                 type: "UPDATE_LESSON",
                 lesson
             }))
