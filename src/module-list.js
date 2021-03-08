@@ -17,7 +17,7 @@ const ModuleList = (
     const {courseId, moduleId} = useParams()
     useEffect(() => {
         findModulesForCourse(courseId)
-    }, [])
+    }, [findModulesForCourse, courseId])
     return (
         <div>
             <h3>Modules {moduleId}</h3>
