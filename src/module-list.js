@@ -75,12 +75,12 @@ const dptm = (dispatch) => {
                 })),
         findModulesForCourse: (courseId) => {
             moduleService.findModulesForCourse(courseId)
-                .then(coursesModules => dispatch({
-                    type: "FIND_MODULES_FOR_COURSE",
-                    modules: coursesModules,
-                }))
+                .then(modules => dispatch({
+                        type: "FIND_MODULES_FOR_COURSE",
+                        modules
+                    })
+                )
         }
-
     }
 }
 

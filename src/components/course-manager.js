@@ -53,7 +53,6 @@ class CourseManager extends React.Component {
     }
 
     updateCourse = (course) => {
-        console.log(course)
         courseService.updateCourse(course._id, course)
             .then(status => this.setState((prevState) => ({
                 ...prevState,
