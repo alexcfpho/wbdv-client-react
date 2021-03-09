@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './course-editor.css'
 import '../../styles.css'
@@ -12,6 +12,7 @@ import TopicPills from "../../topic-pills";
 import moduleReducer from "../../reducers/modules-reducer";
 import lessonReducer from "../../reducers/lessons-reducer";
 import topicReducer from "../../reducers/topic-reducer"
+import courseService from "../../services/course-service";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
@@ -19,12 +20,19 @@ const reducer = combineReducers({
     topicReducer: topicReducer
 })
 
-const store = createStore(reducer)
+const store = createStore(reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const CourseEditor = ({history}) => {
 
     // Took out module and lessonId since haven't found a need yet.
-    const {courseId} = useParams();
+    const {courseId, layout} = useParams();
+    const [currTitle, setCourseTitle] = useState('');
+
+    useEffect(() => {
+        courseService.findCourseById(courseId)
+            .then(course => setCourseTitle(course.title))
+    }, [courseId])
 
     return (
         <Provider store={store}>
@@ -32,16 +40,11 @@ const CourseEditor = ({history}) => {
                 <div className="row wbdv-header p-2">
                     <div className="col-4">
                         <h3 className="wbdv-header-title mt-1 ml-2">
-                            <FontAwesomeIcon icon={"arrow-left"} size="lg" pull={"left"}
-                                             className={"mr-4 wbdv-back-btn"}
-                                             onClick={() => history.goBack()}/>
-                            Course Editor {courseId}
+                            <Link to={`/courses/${layout}`}>
+                                <FontAwesomeIcon icon={"times"} size={"1x"} pull={"left"} className={"ml-3 mt-1"}/>
+                            </Link>
+                            Course Editor {currTitle}
                         </h3>
-
-                        <Link to={"/courses/"}>
-                            <FontAwesomeIcon icon={"times"} size={"lg"} pull={"left"} className={"ml-3 mt-2"}/>
-                        </Link>
-
                     </div>
                     <div className="col-8">
                         {/*<div className="row">*/}
