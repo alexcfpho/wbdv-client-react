@@ -15,7 +15,7 @@ const TopicPills = (
         deleteTopic
     }) => {
 
-    const {courseId, moduleId, lessonId, topicId} = useParams();
+    const {layout, courseId, moduleId, lessonId, topicId} = useParams();
     const hasLesson = lessonId !== 'undefined' && typeof lessonId !== 'undefined';
     const hasModule = moduleId !== 'undefined' && typeof moduleId !== 'undefined';
     const hasCourse = courseId !== 'undefined' && typeof courseId !== 'undefined';
@@ -34,12 +34,11 @@ const TopicPills = (
                 <h4>Topics {topicId}</h4>
                 <ul className="nav nav-pills wbdv-topic-pill-list mt-3">
                     {
-                        listOfTopics.map((topic) =>
-                            <li className="nav-item wbdv-topic-pill-list">
-                                key={topic._id}
+                        listOfTopics.map((topic, index) =>
+                            <li className="nav-item wbdv-topic-pill-list" key={index}>
                                 <EditableItem
                                     active={topic._id === topicId}
-                                    to={`/courses/editor/${courseId}/${moduleId}/${lessonId}/${topic._id}`}
+                                    to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                                     item={topic}
                                     deleteItem={deleteTopic}
                                     updateItem={updateTopic}
@@ -111,14 +110,6 @@ const dtpm = (dispatch) => ({
                 topicToDelete: topic
             }))
     }
-    // clearTopics: (topic) => {
-    //     .then(status => dispatch({
-    //         type: "CLEAR_TOPICS",
-    //         topics
-    //     }))
-    // }
-
-
 })
 
 export default connect(stpm, dtpm)(TopicPills)
