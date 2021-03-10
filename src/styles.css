@@ -250,6 +250,10 @@ a:active {
     color: #e30022;
 }
 
+.fa-plus, .fa-times, .fa-arrow-left {
+    color: #7d7dad;
+}
+
 
 /* NEED TO TEST */
 .table-primary,
