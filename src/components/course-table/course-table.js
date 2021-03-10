@@ -37,9 +37,9 @@ class CourseTable extends React.Component {
                             <CourseRow
                                 deleteCourse={this.props.deleteCourse}
                                 updateCourse={this.props.updateCourse}
-                                key = {index}
+                                key={index}
                                 course={course}
-                                title= {course.title}
+                                title={course.title}
                                 owner={course.owner}
                                 lastModified={course.lastModified}
                             />)
