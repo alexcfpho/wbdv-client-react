@@ -53,12 +53,6 @@ ul ul a {
     line-height: 0;
 }
 
-.wbdv-module-item ul li a:hover {
-    color: #fff;
-    background: #475ebf;
-}
-
-
 .fa-plus, .fa-times, .fa-arrow-left {
     color: #503e63;
 }
@@ -68,36 +62,52 @@ ul ul a {
     transition: all 0.5s;
 }
 
-.wbdv-module-item {
-    background: #6d7fcc;
-    border-bottom: 1px solid #475ebf;
-}
-
-.wbdv-topic-pill {
-    background: #6d7fcc;
-}
-
-.wbdv-topic-pill-list {
-    border-radius: 2px;
-}
-
-.wbdv-lesson-list {
-    background: #b2a1c4;
-    border: none;
-    border-radius: 6px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 .wbdv-header {
     background: #E0BBE4;
 }
 
+/*.wbdv-topic-pill {*/
+/*    background: #6d7fcc;*/
+/*}*/
+
+/*.wbdv-topic-pill-list {*/
+/*    border-radius: 2px;*/
+/*}*/
+
+/*.wbdv-lesson-list {*/
+/*    background: #b2a1c4;*/
+/*    border: none;*/
+/*    border-radius: 6px;*/
+/*    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+
+.wbdv-module-item ul li a:hover, .nav-link:hover {
+    background-color: #644d7b;
+    border-color: #7b5f97;
+    color: #f7f5f9;
+}
+
+.wbdv-module-item {
+    background-color: #957dad;
+    border-color: #957dad;
+}
+
+.wbdv-module-item > .nav-link:active, .nav-link:focus, .active {
+    background-color: #414168;
+    border-color: #59598e;
+    color: #f7f5f9 !important;
+}
+
 .wbdv-module-list li:hover {
-    background: #475ebf;
+    background-color: #644d7b;
+    border-color: #7b5f97;
+    color: #f7f5f9;
 }
 
 .wbdv-module-list li.active {
-    background: #30418a;
+    background-color: #414168;
+    border-color: #59598e;
 }
 
 .wbdv-module-item-delete-btn {

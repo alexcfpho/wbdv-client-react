@@ -77,20 +77,31 @@ body, .wbdv-icons-body {
 
 .btn-primary {
     background-color: #957dad;
-    color: #FEC8D8;
-    border-color: #7d7dad;
+    color: #f7f5f9;
+    border-color: #957dad;
+    /*border-color: #7d7dad;*/
     box-shadow: none;
 }
 
 .btn-primary:hover {
     background-color: #644d7b;
-    border-color: #503e63;
+    border-color: #7b5f97;
 }
 
-.btn-primary:not(:disabled):not(.disabled):active {
-    color: white;
-    background-color: #3d2f4a;
-    border-color: #644d7b;
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #212529;
+    background-color: #957dad;
+    border-color: #957dad;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary-active {
+    color: #f7f5f9;
+    background-color: #414168;
+    border-color: #59598e;
     /* Remove the ugly default blue border/ring around button */
     outline: 0 none;
 }
@@ -99,6 +110,41 @@ body, .wbdv-icons-body {
 .btn-primary:not(:disabled):not(.disabled):focus {
     box-shadow: 0 0 5px #ede9f1;
     background-color: #b2a1c4;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
+}
+
+.btn-outline-primary {
+    color: #957dad;
+    background-color: transparent;
+    border-color: #957dad;
+}
+
+.btn-outline-primary:hover {
+    color: #f7f5f9;
+    background-color: #957dad;
+    border-color: #957dad;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: #957dad;
+    background-color: transparent;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    color: #f7f5f9;
+    background-color: #957dad;
+    border-color: #957dad;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
 }
 
 .btn-success {
@@ -146,29 +192,54 @@ a:active {
     text-decoration: underline;
 }
 
-/* Using nav-item instead of nav-link fills the entire element square */
+/* TABS */
 
-.nav-pills .nav-item:not(.active) {
-    background-color: #6d7fcc;
+.nav-tabs > .nav-item:not(.active) {
+    background-color: #644d7b;
+    border-color: #957dad;
 }
 
-.nav-pills .nav-item a {
-    color: #fff;
+.nav-tabs > .nav-item > .nav-link.active {
+    background-color: #414168;
+    border-color: #59598e;
+    color: #f7f5f9;
+}
+
+.nav-tabs > li > a:hover {
+    background-color: #644d7b;
+    border-color: #7b5f97;
+    color: #f7f5f9;;
+}
+
+.nav-tabs > li > a:focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
+}
+
+/* PILLS */
+
+/* Using nav-item instead of nav-link fills the entire element square */
+
+.nav-link, .nav-pills .nav-item:not(.active) {
+    background-color: #957dad;
+    border-color: #957dad;
 }
 
 /* This targets the list item then combines two target classes */
 .nav-pills > .nav-item > .nav-link.active {
-    background-color: #30418a;
+    background-color: #414168;
+    border-color: #59598e;
 }
 
 /* Both methods with child/sibling selector work */
 
 .nav-pills > .nav-item a:hover {
-    background-color: #475ebf;
+    background-color: #644d7b;
+    border-color: #7b5f97;
+    color: #f7f5f9;
 }
 
 .nav-pills > .nav-item a:focus {
-    background-color: #909ed8;
+    box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
 }
 
 .fa-check {
@@ -177,4 +248,21 @@ a:active {
 
 .fa-trash {
     color: #e30022;
+}
+
+
+/* NEED TO TEST */
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+    background-color: #f0edf4;
+}
+
+.table-hover .table-primary:hover {
+    background-color: #e4ddea;
+}
+
+.table-hover .table-primary:hover > td,
+.table-hover .table-primary:hover > th {
+    background-color: #e4ddea;
 }

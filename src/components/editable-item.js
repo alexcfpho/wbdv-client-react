@@ -26,7 +26,7 @@ const EditableItem = (
             {
                 editing &&
                 <>
-                    <div className="col-12 btn-primary btn p-3">
+                    <div className="col-12 btn-primary-active btn p-3">
                         <input
                             onChange={(e) =>
                                 setCachedItem({
