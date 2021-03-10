@@ -28,8 +28,8 @@ const LessonTabs = (
             <h3 className="mt-3">Lessons</h3>
             <ul className="nav nav-tabs col-11">
                 {
-                    listOfLessons.map((lesson, index) =>
-                        <li className="nav-item" key={index}>
+                    listOfLessons.map(lesson =>
+                        <li className="nav-item" key={lesson._id}>
                             <EditableItem
                                 active={lesson._id === lessonId}
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}

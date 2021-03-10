@@ -23,9 +23,9 @@ const ModuleList = (
             <h3>Modules</h3>
             <ul className="list-group text-white wbdv-module-list">
                 {
-                    listOfModules.map((module, index) =>
+                    listOfModules.map(module =>
                         <li className={`list-group-item wbdv-module-item ${module._id === moduleId ? 'active' : ''}`}
-                            key={index}>
+                            key={module._id}>
                             <EditableItem
                                 to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                                 deleteItem={deleteModule}

@@ -33,8 +33,8 @@ const TopicPills = (
                 <h4 className="mt-2">Topics</h4>
                 <ul className="nav nav-pills wbdv-topic-pill-list mt-2">
                     {
-                        listOfTopics.map((topic, index) =>
-                            <li className="nav-item wbdv-topic-pill-list" key={index}>
+                        listOfTopics.map(topic =>
+                            <li className="nav-item wbdv-topic-pill-list" key={topic._id}>
                                 <EditableItem
                                     active={topic._id === topicId}
                                     to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
