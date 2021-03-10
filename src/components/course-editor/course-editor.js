@@ -25,7 +25,6 @@ const store = createStore(reducer,
 
 const CourseEditor = ({history}) => {
 
-    // Took out module and lessonId since haven't found a need yet.
     const {courseId, layout} = useParams();
     const [currTitle, setCourseTitle] = useState('');
 
@@ -39,25 +38,21 @@ const CourseEditor = ({history}) => {
             <div>
                 <div className="row wbdv-header p-2">
                     <div className="col-4">
-                        <h3 className="wbdv-header-title mt-1 ml-2">
-                            <Link to={`/courses/${layout}`}>
-                                <FontAwesomeIcon icon={"times"} size={"1x"} pull={"left"} className={"ml-3 mt-1"}/>
-                            </Link>
-                            Course Editor {currTitle}
-                        </h3>
+                        <Link to={`/courses/${layout}`}>
+                            <FontAwesomeIcon icon={"times"} size={"lg"} pull={"left"} className={"ml-1 mt-3"}/>
+                        </Link>
+                        <h2 className="wbdv-header-title mt-2">
+                            {currTitle}
+                        </h2>
                     </div>
                     <div className="col-8">
-                        {/*<div className="row">*/}
                         <LessonTabs/>
-                        {/*</div>*/}
                     </div>
                 </div>
-                {/* Modules */}
                 <div className="row">
                     <div className="col-4 wbdv-module-bg p-4">
                         <ModuleList/>
                     </div>
-                    {/* Topics */}
                     <div className="col-8">
                         <TopicPills/>
                         {/* Widgets */}

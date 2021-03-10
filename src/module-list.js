@@ -20,7 +20,7 @@ const ModuleList = (
     }, [findModulesForCourse, courseId])
     return (
         <div>
-            <h3>Modules {moduleId}</h3>
+            <h3>Modules</h3>
             <ul className="list-group text-white wbdv-module-list">
                 {
                     listOfModules.map((module, index) =>

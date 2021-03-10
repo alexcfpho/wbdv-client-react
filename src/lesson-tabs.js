@@ -25,8 +25,8 @@ const LessonTabs = (
 
     return (
         <div>
-            <h3>Lessons {lessonId}</h3>
-            <ul className="nav nav-tabs col-11 wbdv-lesson-list">
+            <h3 className="mt-3">Lessons</h3>
+            <ul className="nav nav-tabs col-11">
                 {
                     listOfLessons.map((lesson, index) =>
                         <li className="nav-item" key={index}>
@@ -42,7 +42,7 @@ const LessonTabs = (
                     )
                 }
                 <li>
-                    <FontAwesomeIcon icon={"plus"} onClick={() => {
+                    <FontAwesomeIcon icon={"plus"} className="ml-1" onClick={() => {
                         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
                             createLessonForModule(moduleId)
                         } else {

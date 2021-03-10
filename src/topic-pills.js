@@ -31,8 +31,8 @@ const TopicPills = (
         <>
             {showTopics &&
             <div>
-                <h4>Topics {topicId}</h4>
-                <ul className="nav nav-pills wbdv-topic-pill-list mt-3">
+                <h4 className="mt-2">Topics</h4>
+                <ul className="nav nav-pills wbdv-topic-pill-list mt-2">
                     {
                         listOfTopics.map((topic, index) =>
                             <li className="nav-item wbdv-topic-pill-list" key={index}>
@@ -48,7 +48,7 @@ const TopicPills = (
                         )
                     }
                     <li>
-                        <FontAwesomeIcon icon={"plus"} onClick={() => {
+                        <FontAwesomeIcon icon={"plus"} className="ml-1" onClick={() => {
                             if (lessonId !== "undefined" && typeof lessonId !== "undefined") {
                                 createTopicForLesson(lessonId)
                             } else {
