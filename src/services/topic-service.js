@@ -1,7 +1,7 @@
 const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/lessons"
 const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/topics"
 
-export const createTopicForLesson = (lessonId, topic) =>
+export const createTopic = (lessonId, topic) =>
     fetch(`${LESSONS_URL}/${lessonId}/topics`, {
         method: "POST",
         body: JSON.stringify(topic),
@@ -36,7 +36,7 @@ export const deleteTopic = (topicId) =>
         .then(response => response.json())
 
 const api = {
-    createTopicForLesson, findTopicsForLesson, updateTopic, deleteTopic, findTopic
+    createTopic, findTopicsForLesson, updateTopic, deleteTopic, findTopic
 }
 
 export default api;

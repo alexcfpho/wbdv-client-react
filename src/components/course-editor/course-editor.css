@@ -53,10 +53,6 @@ ul ul a {
     line-height: 0;
 }
 
-.fa-plus, .fa-times, .fa-arrow-left {
-    color: #503e63;
-}
-
 .wbdv-module-bg {
     background: #E0BBE4;
     transition: all 0.5s;

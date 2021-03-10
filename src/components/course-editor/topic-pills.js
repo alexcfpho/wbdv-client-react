@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import EditableItem from "./components/editable-item";
+import EditableItem from "../editable-item";
 import {useParams} from 'react-router-dom';
-import topicService from './services/topic-service';
+import topicService from '../../services/topic-service';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TopicPills = (
     {
         listOfTopics = [],
-        createTopicForLesson,
+        createTopic,
         findTopicsForLesson,
-        findTopic,
         updateTopic,
         deleteTopic
     }) => {
@@ -42,7 +41,6 @@ const TopicPills = (
                                     item={topic}
                                     deleteItem={deleteTopic}
                                     updateItem={updateTopic}
-                                    findItem={findTopic}
                                 />
                             </li>
                         )
@@ -50,7 +48,7 @@ const TopicPills = (
                     <li>
                         <FontAwesomeIcon icon={"plus"} className="ml-1" onClick={() => {
                             if (lessonId !== "undefined" && typeof lessonId !== "undefined") {
-                                createTopicForLesson(lessonId)
+                                createTopic(lessonId)
                             } else {
                                 alert('Select a Lesson first, cannot create a Topic with no parent Lesson.')
                             }
@@ -74,7 +72,7 @@ const dtpm = (dispatch) => ({
     findTopicsForLesson: (lessonId) => {
         topicService.findTopicsForLesson(lessonId)
             .then(topics => dispatch({
-                    type: "FIND_TOPICS",
+                    type: "FIND_TOPICS_FOR_LESSON",
                     topics
                 })
             )
@@ -87,8 +85,8 @@ const dtpm = (dispatch) => ({
                 })
             )
     },
-    createTopicForLesson: (lessonId) => {
-        topicService.createTopicForLesson(lessonId, {title: "New Topic"})
+    createTopic: (lessonId) => {
+        topicService.createTopic(lessonId, {title: "New Topic"})
             .then(topic => dispatch({
                     type: "CREATE_TOPIC",
                     topic

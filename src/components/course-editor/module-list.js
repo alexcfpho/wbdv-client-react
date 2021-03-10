@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from 'react-redux'
-import EditableItem from "./components/editable-item";
+import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
 
-import moduleService from "./services/module-service";
+import moduleService from "../../services/module-service";
 
 const ModuleList = (
     {
@@ -54,7 +54,7 @@ const stpm = (state) => {
 const dptm = (dispatch) => {
     return {
         createModule: (courseId) => {
-            moduleService.createModuleForCourse(courseId, {title: "New Module"})
+            moduleService.createModule(courseId, {title: "New Module"})
                 .then(theActualModule => dispatch({
                     type: "CREATE_MODULE",
                     module: theActualModule

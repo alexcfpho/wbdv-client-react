@@ -12,14 +12,14 @@ const topicReducer = (state = initialTopics, action) => {
                     action.topic
                 ]
             }
-        case "FIND_TOPICS":
+        case "FIND_TOPICS_FOR_LESSON":
             return {
                 ...state,
                 topics: action.topics
             }
         case "FIND_TOPIC":
             return {
-                topics: state.topics.find(topic => topic._id === action.lesson._id)
+                topic: state.topics.find(topic => topic._id === action.lesson._id)
             }
         case "UPDATE_TOPIC":
             return {

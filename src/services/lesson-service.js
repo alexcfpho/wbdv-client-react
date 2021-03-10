@@ -1,7 +1,7 @@
 const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/modules";
 const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/lessons";
 
-export const createLessonForModule = (moduleId, lesson) =>
+export const createLesson = (moduleId, lesson) =>
     fetch(`${MODULES_URL}/${moduleId}/lessons`, {
         method: "POST",
         body: JSON.stringify(lesson),
@@ -29,14 +29,14 @@ export const updateLesson = (lessonId, lesson) =>
     })
         .then(response => response.json())
 
-export const deleteLessonForModule = (lessonId) =>
+export const deleteLesson = (lessonId) =>
     fetch(`${LESSONS_URL}/${lessonId}`, {
         method: "DELETE"
     })
         .then(response => response.json())
 
 const api = {
-    findLessonsForModule, findLesson, createLessonForModule, deleteLessonForModule, updateLesson
+    findLessonsForModule, findLesson, createLesson, deleteLesson, updateLesson
 }
 
 export default api;

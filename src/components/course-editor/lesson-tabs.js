@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import EditableItem from "./components/editable-item";
+import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
-import lessonService from './services/lesson-service'
+import lessonService from '../../services/lesson-service'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const LessonTabs = (
     {
         listOfLessons = [],
-        createLessonForModule,
-        deleteLessonForModule,
+        createLesson,
+        deleteLesson,
         updateLesson,
         findLessonsForModule,
         findLesson
@@ -33,9 +33,8 @@ const LessonTabs = (
                             <EditableItem
                                 active={lesson._id === lessonId}
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
-                                deleteItem={deleteLessonForModule}
+                                deleteItem={deleteLesson}
                                 updateItem={updateLesson}
-                                findItem={findLesson}
                                 item={lesson}
                             />
                         </li>
@@ -44,7 +43,7 @@ const LessonTabs = (
                 <li>
                     <FontAwesomeIcon icon={"plus"} className="ml-1" onClick={() => {
                         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
-                            createLessonForModule(moduleId)
+                            createLesson(moduleId)
                         } else {
                             alert('Select a Module first, cannot create Lesson with no parent module.')
                         }
@@ -65,9 +64,8 @@ const stpm = (state) => {
 const dtpm = (dispatch) => ({
     findLessonsForModule: (moduleId) => {
         lessonService.findLessonsForModule(moduleId)
-            // .then(lessons => console.log(lessons))
             .then((lessons => dispatch({
-                    type: "FIND_LESSONS",
+                    type: "FIND_LESSONS_FOR_MODULE",
                     lessons
                 }))
             )
@@ -75,20 +73,19 @@ const dtpm = (dispatch) => ({
     findLesson: (lessonId) => {
         lessonService.findLesson(lessonId)
             .then(lesson => dispatch({
-                // .then(lesson => console.log(lesson._id))
                 type: "FIND_LESSON",
                 lesson
             }))
     },
-    createLessonForModule: (moduleId) => {
-        lessonService.createLessonForModule(moduleId, {title: "New Lesson"})
+    createLesson: (moduleId) => {
+        lessonService.createLesson(moduleId, {title: "New Lesson"})
             .then(lesson => dispatch({
                 type: "CREATE_LESSON",
                 lesson
             }))
     },
-    deleteLessonForModule: (lesson) => {
-        lessonService.deleteLessonForModule(lesson._id)
+    deleteLesson: (lesson) => {
+        lessonService.deleteLesson(lesson._id)
             .then(status => dispatch({
                 type: "DELETE_LESSON",
                 lessonToDelete: lesson

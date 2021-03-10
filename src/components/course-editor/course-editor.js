@@ -6,9 +6,9 @@ import '../../styles.css'
 import {Link, useParams} from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
-import ModuleList from "../../module-list";
-import LessonTabs from "../../lesson-tabs";
-import TopicPills from "../../topic-pills";
+import ModuleList from "./module-list";
+import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
 import moduleReducer from "../../reducers/modules-reducer";
 import lessonReducer from "../../reducers/lessons-reducer";
 import topicReducer from "../../reducers/topic-reducer"
@@ -23,7 +23,7 @@ const reducer = combineReducers({
 const store = createStore(reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-const CourseEditor = ({history}) => {
+const CourseEditor = () => {
 
     const {courseId, layout} = useParams();
     const [currTitle, setCourseTitle] = useState('');

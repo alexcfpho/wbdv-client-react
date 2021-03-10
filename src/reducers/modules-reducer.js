@@ -17,6 +17,10 @@ const moduleReducer = (state = initialModules, action) => {
                 ...state,
                 modules: action.modules
             }
+        case "FIND_MODULE":
+            return {
+                module: state.modules.find(module => module._id === action.module._id)
+            }
         case "DELETE_MODULE":
             const newState1 = {
                 modules: state.modules.filter(module => {
