@@ -35,12 +35,12 @@ const EditableItem = (
                                 })}
                             value={cachedItem.title}
                         />
-                        <FontAwesomeIcon icon={"check"} pull={"right"}
+                        <FontAwesomeIcon icon={"check"} pull={"right"} size={"lg"}
                                          onClick={() => {
                                              setEditing(false);
                                              updateItem(cachedItem)
                                          }}/>
-                        <FontAwesomeIcon icon={"times"} pull={"right"}
+                        <FontAwesomeIcon icon={"times"} pull={"right"} size={"lg"}
                                          onClick={() => deleteItem(item)}/>
                     </div>
                 </>
