@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const EditableItem = (
     {
@@ -8,7 +8,7 @@ const EditableItem = (
         deleteItem,
         updateItem,
         item = {title: "Some Title", _id: "ABC"},
-        active
+        hungryClassName
     }) => {
     const [editing, setEditing] = useState(false)
     const [cachedItem, setCachedItem] = useState(item)
@@ -17,10 +17,10 @@ const EditableItem = (
             {
                 !editing &&
                 <>
-                    <Link className={`nav-link ${active ? 'active' : ''} `} to={to}>
+                    <NavLink activeClassName={"active"} className={`${hungryClassName} `} to={to}>
                         {item.title}
                         <FontAwesomeIcon icon={"edit"} onClick={() => setEditing(true)} pull={"right"}/>
-                    </Link>
+                    </NavLink>
                 </>
             }
             {

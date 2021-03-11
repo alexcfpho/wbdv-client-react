@@ -14,7 +14,7 @@ const TopicPills = (
         deleteTopic
     }) => {
 
-    const {layout, courseId, moduleId, lessonId, topicId} = useParams();
+    const {layout, courseId, moduleId, lessonId} = useParams();
     const hasLesson = lessonId !== 'undefined' && typeof lessonId !== 'undefined';
     const hasModule = moduleId !== 'undefined' && typeof moduleId !== 'undefined';
     const hasCourse = courseId !== 'undefined' && typeof courseId !== 'undefined';
@@ -36,11 +36,11 @@ const TopicPills = (
                         listOfTopics.map(topic =>
                             <li className="nav-item wbdv-topic-pill-list" key={topic._id}>
                                 <EditableItem
-                                    active={topic._id === topicId}
                                     to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                                     item={topic}
                                     deleteItem={deleteTopic}
                                     updateItem={updateTopic}
+                                    hungryClassName={"nav-link"}
                                 />
                             </li>
                         )

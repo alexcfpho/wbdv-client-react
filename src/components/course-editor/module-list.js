@@ -14,26 +14,24 @@ const ModuleList = (
         updateModule,
         findModulesForCourse
     }) => {
-    const {layout, courseId, moduleId} = useParams()
+    const {layout, courseId} = useParams()
     useEffect(() => {
         findModulesForCourse(courseId)
     }, [findModulesForCourse, courseId])
     return (
         <div>
             <h3>Modules</h3>
-            <ul className="list-group text-white wbdv-module-list">
+            <ul className="list-group wbdv-module-list">
                 {
                     listOfModules.map(module =>
-                        <li className={`list-group-item wbdv-module-item ${module._id === moduleId ? 'active' : ''}`}
-                            key={module._id}>
-                            <EditableItem
-                                to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
-                                deleteItem={deleteModule}
-                                updateItem={updateModule}
-                                item={module}
-                                active={module._id === moduleId}
-                            />
-                        </li>
+                        <EditableItem
+                            key={module._id}
+                            to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
+                            deleteItem={deleteModule}
+                            updateItem={updateModule}
+                            item={module}
+                            hungryClassName={"list-group-item list-group-item-action wbdv-module-item"}
+                        />
                     )
                 }
                 <a href="#" className="p-2 wbdv-module-item-add-btn mt-2">

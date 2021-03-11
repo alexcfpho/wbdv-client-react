@@ -215,6 +215,12 @@ a:active {
     box-shadow: 0 0 0 0.2rem rgba(149, 125, 173, 0.5);
 }
 
+.list-group-item.active {
+    background-color: #414168;
+    border-color: #59598e;
+    color: #f7f5f9;
+}
+
 /* PILLS */
 
 /* Using nav-item instead of nav-link fills the entire element square */
