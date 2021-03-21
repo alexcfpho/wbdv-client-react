@@ -29,11 +29,11 @@ a.article:hover {
     color: #fff !important;
 }
 
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
-}
+/*ul ul a {*/
+/*    font-size: 0.9em !important;*/
+/*    padding-left: 30px !important;*/
+/*    background: #6d7fcc;*/
+/*}*/
 
 /* I am so proud to figure this on my own. */
 .fa-circle:hover::before {
