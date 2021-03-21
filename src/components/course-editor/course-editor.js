@@ -12,12 +12,15 @@ import TopicPills from "./topic-pills";
 import moduleReducer from "../../reducers/modules-reducer";
 import lessonReducer from "../../reducers/lessons-reducer";
 import topicReducer from "../../reducers/topic-reducer"
+import widgetReducer from "../../reducers/widget-reducer";
 import courseService from "../../services/course-service";
+import WidgetList from "./widgets/widget-list";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    topicReducer: topicReducer
+    topicReducer: topicReducer,
+    widgetReducer: widgetReducer
 })
 
 const store = createStore(reducer,
@@ -55,61 +58,23 @@ const CourseEditor = () => {
                     </div>
                     <div className="col-8">
                         <TopicPills/>
-                        {/* Widgets */}
+                        {/* Preview Button */}
                         <div>
                             <div className="row mt-3">
                                 <div className="col-12">
-                  <span className="float-right">
-                    <button className="btn btn-success btn-sm mr-2">Save</button>
-                    <div className="custom-control custom-switch d-inline mt-3">
-                      <input type="checkbox" className="custom-control-input" id="customSwitch1"/>
-                      <label className="custom-control-label" htmlFor="customSwitch1">Preview</label>
-                    </div>
-                  </span>
+                                <span className="float-right">
+                                    <button className="btn btn-success btn-sm mr-2">Save</button>
+                                    <div className="custom-control custom-switch d-inline mt-3">
+                                        <input type="checkbox" className="custom-control-input" id="customSwitch1"/>
+                                        <label className="custom-control-label" htmlFor="customSwitch1">Preview</label>
+                                  </div>
+                              </span>
                                 </div>
                             </div>
+                            {/* Widgets */}
                             <ul className="list-group mt-3">
                                 <li className="list-group-item">
-                                    <div>
-                                        <h3 className="d-inline">Heading Widget</h3>
-                                        {/* Heading with Buttons */}
-                                        <span className="float-right">
-                      <button className="btn btn-sm btn-warning mr-1">
-                        <i className="fa fa-arrow-up"/>
-                      </button>
-                      <button className="btn btn-sm btn-warning mr-4">
-                        <i className="fa fa-arrow-down"/>
-                      </button>
-                      <select className="form-control-sm mr-3">
-                        <option>Heading</option>
-                        <option>Heading 2</option>
-                        <option>Heading 3</option>
-                        <option>Heading 4</option>
-                        <option>Heading 5</option>
-                      </select>
-                      <button className="btn btn-sm btn-danger">
-                        <i className="fa fa-trash"/>
-                      </button>
-                    </span>
-                                        <div className="form-group pt-3">
-                                            <input className="form-control" placeholder="Heading text"/>
-                                        </div>
-                                        <div className="form-group">
-                                            <select className="form-control">
-                                                <option>Heading 1</option>
-                                                <option>Heading 2</option>
-                                                <option>Heading 3</option>
-                                                <option>Heading 4</option>
-                                                <option>Heading 5</option>
-                                                <option>Heading 6</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group">
-                                            <input className="form-control" placeholder="Widget name"/>
-                                        </div>
-                                        <h3>Preview</h3>
-                                        <h1>Heading text</h1>
-                                    </div>
+                                    <WidgetList/>
                                 </li>
                             </ul>
                         </div>
