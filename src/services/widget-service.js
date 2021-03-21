@@ -42,9 +42,10 @@ export const deleteWidget = (wid) =>
         .then(response => response.json())
 
 const api = {
-    findWidgets: findWidgetsForTopic,
-    findWidgetsById: findWidgetById,
-    createWidgetForTopic: createWidget,
+    createWidget,
+    findWidgetsForTopic,
+    findWidgetById,
+    findAllWidgets,
     updateWidget,
     deleteWidget
 };
