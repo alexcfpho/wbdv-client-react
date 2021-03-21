@@ -17,13 +17,17 @@ const WidgetList = (
     }) => {
 
     const {layout, courseId, moduleId, lessonId, topicId} = useParams()
-
+    const hasCourse = courseId !== 'undefined' && typeof courseId !== 'undefined';
+    const hasModule = moduleId !== 'undefined' && typeof moduleId !== 'undefined';
+    const hasLesson = lessonId !== 'undefined' && typeof lessonId !== 'undefined';
+    const hasTopics = topicId !== 'undefined' && typeof topicId !== 'undefined';
+    const showWidgets = hasCourse && hasModule && hasLesson && hasTopics;
 
     useEffect(() => {
-        if (topicId !== "undefined" && typeof topicId !== "undefined") {
+        if (showWidgets) {
             findWidgetsForTopic(topicId)
         }
-    }, [findWidgetsForTopic, topicId])
+    }, [showWidgets, findWidgetsForTopic, topicId])
 
     return (
         <>
