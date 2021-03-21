@@ -16,7 +16,7 @@ const WidgetList = (
         findWidgetsForTopic,
     }) => {
 
-    const {layout, courseId, moduleId, lessonId, topicId, widgetId} = useParams()
+    const {layout, courseId, moduleId, lessonId, topicId} = useParams()
 
 
     useEffect(() => {
@@ -28,25 +28,26 @@ const WidgetList = (
     return (
         <>
             {/* Heading with Buttons */}
-            <h3 className="d-inline">Heading Widget</h3>
+            <h3 className="d-inline-block">Widgets</h3>
             <span className="float-right">
                 <button className="btn btn-sm btn-warning mr-1">
-                    <i className="fa fa-arrow-up"/>
+                    <FontAwesomeIcon icon={"arrow-up"}/>
                 </button>
                 <button className="btn btn-sm btn-warning mr-4">
-                    <i className="fa fa-arrow-down"/>
+                    <FontAwesomeIcon icon={"arrow-down"}/>
                 </button>
                 <select className="form-control-sm mr-3">
-                    <option>Heading</option>
+                    <option>Heading 1</option>
                     <option>Heading 2</option>
                     <option>Heading 3</option>
                     <option>Heading 4</option>
                     <option>Heading 5</option>
+                    <option>Heading 6</option>
                 </select>
-                <button className="btn btn-sm btn-danger">
-                    <i className="fa fa-trash"/>
+                <button className="btn btn-sm btn-danger mr-2">
+                    <FontAwesomeIcon icon={"trash"}/>
                 </button>
-                <FontAwesomeIcon icon={"plus"} className="lg mt-1" pull={"right"}
+                <FontAwesomeIcon icon={"plus"} className={"mr-2"} pull={"right"} size={"2x"}
                                  onClick={() => createWidget(topicId)}/>
             </span>
 
