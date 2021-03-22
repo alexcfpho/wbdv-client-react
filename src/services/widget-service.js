@@ -1,7 +1,5 @@
-const TOPICS_LOCAL_URL = "http://localhost:8080/api/topics";
-// const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/apho/topics"
-const WIDGETS_LOCAL_URL = "http://localhost:8080/api/widgets";
-// const WIDGETS_URL = "https://wbdv-generic-server.herokuapp.com/api/widgets"
+const TOPICS_LOCAL_URL = process.env.REACT_APP_TOPIC_URL;
+const WIDGETS_LOCAL_URL = process.env.REACT_APP_WIDGET_URL;
 
 export const createWidget = (topicId, widget) =>
     fetch(`${TOPICS_LOCAL_URL}/${topicId}/widgets`, {
