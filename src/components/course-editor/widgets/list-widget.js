@@ -70,7 +70,6 @@ const ListWidget = (
                         <textarea value={widgetCache.text} rows={10} className="form-control"
                                   onChange={(e) => setWidgetCache({...widgetCache, text: e.target.value})}
                         />
-                        {JSON.stringify(widget)}
                     </div>
                     <div className={"col-1"}>
                         <Link to={back}>
