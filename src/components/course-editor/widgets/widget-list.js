@@ -6,6 +6,7 @@ import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 
 import widgetService from '../../../services/widget-service';
+import ListWidget from "./list-widget";
 
 const WidgetList = (
     {
@@ -73,6 +74,16 @@ const WidgetList = (
                             {
                                 widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
+                                    to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                    back={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}`}
+                                    widget={widget}
+                                    updateItem={updateWidget}
+                                    deleteItem={deleteWidget}
+                                />
+                            }
+                            {
+                                widget.type === "LIST" &&
+                                <ListWidget
                                     to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
                                     back={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}`}
                                     widget={widget}
