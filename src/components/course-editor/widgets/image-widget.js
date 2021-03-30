@@ -36,7 +36,6 @@ const ImageWidget = (
                 <div className={"row form-group"}>
                     <div className={"col-11"}>
                         <WidgetType widgetCache={widgetCache} setWidgetCache={setWidgetCache}/>
-                        {JSON.stringify(widgetCache)}
                         <br/>
                         Image URL
                         <input value={widgetCache.src} className="form-control"
@@ -46,14 +45,14 @@ const ImageWidget = (
                                })}/>
                         <br/>
                         Image width
-                        <input value={widgetCache.width} className="form-control"
+                        <input value={widgetCache.width} className="form-control" type="number"
                                onChange={(e) => setWidgetCache({
                                    ...widgetCache,
                                    width: parseInt(e.target.value)
                                })}/>
                         <br/>
                         Image height
-                        <input value={widgetCache.height} className="form-control"
+                        <input value={widgetCache.height} className="form-control" type="number"
                                onChange={(e) => setWidgetCache({
                                    ...widgetCache,
                                    height: parseInt(e.target.value)
