@@ -7,7 +7,7 @@ const WidgetType = ({widgetCache, setWidgetCache}) =>
                 placeholder={"Widget Type"}
                 onChange={(e) => {
                     if (e.target.value === "HEADING" || e.target.value === "PARAGRAPH"
-                        || e.target.value === "LIST") {
+                        || e.target.value === "LIST" || e.target.value === "IMAGE") {
                         setWidgetCache({...widgetCache, type: e.target.value})
                     } else {
                         alert("Widget type is not yet supported!")

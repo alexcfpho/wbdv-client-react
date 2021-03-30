@@ -7,6 +7,7 @@ import ParagraphWidget from "./paragraph-widget";
 
 import widgetService from '../../../services/widget-service';
 import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
 
 const WidgetList = (
     {
@@ -84,6 +85,16 @@ const WidgetList = (
                             {
                                 widget.type === "LIST" &&
                                 <ListWidget
+                                    to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                    back={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}`}
+                                    widget={widget}
+                                    updateItem={updateWidget}
+                                    deleteItem={deleteWidget}
+                                />
+                            }
+                            {
+                                widget.type === "IMAGE" &&
+                                <ImageWidget
                                     to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
                                     back={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}`}
                                     widget={widget}
