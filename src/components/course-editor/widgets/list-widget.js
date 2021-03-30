@@ -68,6 +68,7 @@ const ListWidget = (
                         <br/>
                         Item list
                         <textarea value={widgetCache.text} rows={10} className="form-control"
+                                  placeholder="Enter one list item per line"
                                   onChange={(e) => setWidgetCache({...widgetCache, text: e.target.value})}
                         />
                     </div>
