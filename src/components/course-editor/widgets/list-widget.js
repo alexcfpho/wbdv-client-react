@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import WidgetType from "./widget-type";
+import {nanoid} from 'nanoid'
+
 
 const ListWidget = (
     {
@@ -14,6 +16,26 @@ const ListWidget = (
 
     const [editing, setEditing] = useState(false)
     const [widgetCache, setWidgetCache] = useState(widget);
+    let keys = []
+
+    // Generate stable ids once for each widget.
+    useLayoutEffect(() => {
+        let entry = new Promise(function (resolve, reject) {
+            widget.text.split("\n").forEach((widget) => {
+                resolve({text: widget, key: nanoid()});
+            });
+        });
+        keys.push(entry)
+        Promise.all(keys).then(values => {
+            console.log(values)
+        });
+    });
+
+
+    // function getKey(aWidget) {
+    //
+    // }
+
 
     return (
         <>
@@ -26,8 +48,16 @@ const ListWidget = (
                             <ol>
                                 {
                                     widget.text.split("\n").map((widget) => {
+                                        let currKey;
+                                        keys.forEach(function (entry) {
+                                            if (entry.text === widget) {
+                                                currKey = entry.key;
+                                                console.log(entry.text)
+                                                console.log(entry.key)
+                                            }
+                                        });
                                         return (
-                                            <li>
+                                            <li key={currKey}>
                                                 {widget}
                                             </li>
                                         )
