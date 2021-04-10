@@ -30,7 +30,8 @@ const CourseRow = (
                 {
                     !editing &&
                     <Link to={`/courses/table/edit/${course._id}`}>
-                        {title}</Link>
+                        {title}
+                    </Link>
                 }
                 {
                     editing &&
@@ -42,6 +43,11 @@ const CourseRow = (
             </td>
             <td className="d-none d-md-table-cell">{owner}</td>
             <td className="d-none d-lg-table-cell">{lastModified}</td>
+            <td className="d-none d-lg-table-cell">
+                <Link to={`/courses/${course._id}/quizzes`}>
+                    Quizzes
+                </Link>
+            </td>
             <td className="text-right">
                 {!editing && <FontAwesomeIcon icon={faEdit} size={"lg"} className={"wbdv-icons-body"}
                                               onClick={() => setEditing(true)}/>}
