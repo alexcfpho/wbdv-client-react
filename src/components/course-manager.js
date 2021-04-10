@@ -6,7 +6,6 @@ import CourseTopBar from "./course-top-bar";
 import {Route} from "react-router-dom";
 
 import courseService from "../services/course-service";
-import Switch from "react-bootstrap/Switch";
 
 class CourseManager extends React.Component {
 
@@ -63,45 +62,42 @@ class CourseManager extends React.Component {
 
     render() {
         return (
-            <div>
-                <Switch>
+            <>
+                {/* TOP BAR */}
+                <Route exact path={["/courses/table", "/courses/grid"]}>
+                    <CourseTopBar
+                        courses={this.state.courses}
+                        createCourse={this.createCourse}
+                    />
+                </Route>
 
-                    {/* TOP BAR */}
-                    <Route exact path={["/courses/table", "/courses/grid"]}>
-                        <CourseTopBar
-                            courses={this.state.courses}
-                            createCourse={this.createCourse}
-                        />
-                    </Route>
+                {/* EDITOR */}
+                <Route path={[
+                    "/courses/:layout/edit/:courseId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetId"]}
+                       exact={true}
+                       render={(props) => <CourseEditor {...props}/>}>
+                </Route>
 
-                    {/* EDITOR */}
-                    <Route path={[
-                        "/courses/:layout/edit/:courseId",
-                        "/courses/:layout/edit/:courseId/modules/:moduleId",
-                        "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
-                        "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
-                        "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetId"]}
-                           exact={true}
-                           render={(props) => <CourseEditor {...props}/>}>
-                    </Route>
+                {/* TABLE & COURSES */}
+                <Route path={["/courses/table", "/courses"]} exact={true}>
+                    <CourseTable
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
+                </Route>
 
-                    {/* TABLE & COURSES */}
-                    <Route path={["/courses/table", "/courses"]} exact={true}>
-                        <CourseTable
-                            updateCourse={this.updateCourse}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}/>
-                    </Route>
-
-                    {/* GRID */}
-                    <Route path="/courses/grid" exact={true}>
-                        <CourseGrid
-                            updateCourse={this.updateCourse}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}/>
-                    </Route>
-                </Switch>
-            </div>
+                {/* GRID */}
+                <Route path="/courses/grid" exact={true}>
+                    <CourseGrid
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
+                </Route>
+            </>
         )
     }
 }
