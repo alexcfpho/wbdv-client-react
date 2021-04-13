@@ -14,11 +14,11 @@ const MultipleChoiceQuestion = ({question}) => {
                 {question.question}
                 {
                     question.correct === yourAnswer && isGraded &&
-                    <FontAwesomeIcon icon={"check"}/>
+                    <FontAwesomeIcon icon={"check"} className={"ml-4"}/>
                 }
                 {
                     question.correct !== yourAnswer && isGraded &&
-                    <FontAwesomeIcon icon={"times"}/>
+                    <FontAwesomeIcon icon={"times"} className={"ml-4"}/>
                 }
             </h5>
             <ListGroup>
@@ -31,11 +31,20 @@ const MultipleChoiceQuestion = ({question}) => {
                                     <input
                                         onClick={() => {
                                             setAnswer(choice)
+                                            setGradedState(false)
                                         }}
                                         type="radio"
                                         name={question._id}/>
                                     {choice}
                                 </label>
+                                {
+                                    isGraded && choice === question.correct &&
+                                    <FontAwesomeIcon icon={"check"} className={"ml-2"}/>
+                                }
+                                {
+                                    isGraded && yourAnswer !== question.correct && yourAnswer === choice &&
+                                    <FontAwesomeIcon icon={"times"} className={"ml-2"}/>
+                                }
                             </ListGroupItem>
                         )
                     })

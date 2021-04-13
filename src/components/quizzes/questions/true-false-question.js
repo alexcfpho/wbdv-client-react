@@ -13,11 +13,11 @@ const TrueFalseQuestion = ({question}) => {
                 {question.question}
                 {
                     question.correct === yourAnswer && isGraded &&
-                    <FontAwesomeIcon icon={"check"}/>
+                    <FontAwesomeIcon icon={"check"} className={"ml-4"}/>
                 }
                 {
                     question.correct !== yourAnswer && isGraded &&
-                    <FontAwesomeIcon icon={"times"}/>
+                    <FontAwesomeIcon icon={"times"} className={"ml-4"}/>
                 }
             </h5>
             <ListGroup>
@@ -34,6 +34,14 @@ const TrueFalseQuestion = ({question}) => {
                         />
                         True
                     </label>
+                    {
+                        isGraded && 'true' === question.correct &&
+                        <FontAwesomeIcon icon={"check"} className={"ml-2"}/>
+                    }
+                    {
+                        isGraded && yourAnswer !== question.correct && yourAnswer === 'true' &&
+                        <FontAwesomeIcon icon={"times"} className={"ml-2"}/>
+                    }
                 </ListGroupItem>
                 <ListGroupItem key={"002"}
                                variant={`${isGraded && 'false' === question.correct ? "success"
@@ -47,6 +55,14 @@ const TrueFalseQuestion = ({question}) => {
                                }}/>
                         False
                     </label>
+                    {
+                        isGraded && 'false' === question.correct &&
+                        <FontAwesomeIcon icon={"check"} className={"ml-2"}/>
+                    }
+                    {
+                        isGraded && yourAnswer !== question.correct && yourAnswer === 'false' &&
+                        <FontAwesomeIcon icon={"times"} className={"ml-2"}/>
+                    }
                 </ListGroupItem>
             </ListGroup>
             <div className={"mt-4"}>
