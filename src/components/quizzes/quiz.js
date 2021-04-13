@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import Question from "./questions/question";
 import questionService from "../../services/questions-service"
-import quizService from "../../services/quizzes-services"
+import quizService from "../../services/quizzes-service"
 
 const Quiz = () => {
 

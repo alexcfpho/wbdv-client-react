@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import quizzesService from "../../services/quizzes-services";
+import quizzesService from "../../services/quizzes-service";
 import {Button} from "react-bootstrap";
 
 
