@@ -2,32 +2,34 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import Question from "./questions/question";
 import questionService from "../../services/questions-service"
+import quizService from "../../services/quizzes-services"
 
 const Quiz = () => {
 
     const {quizId} = useParams()
     const [questions, setQuestions] = useState([])
+    const [quiz, setQuiz] = useState({})
 
     useEffect(() => {
         questionService.findQuestionsForQuiz(quizId).then((questions) => {
             setQuestions(questions)
         })
+        quizService.findQuizById(quizId).then((quiz) => {
+            setQuiz(quiz)
+        })
     }, [quizId])
-
     return (
         <div>
-            <h3>Quiz {quizId} ({questions.length})</h3>
-            <ul>
+            <h3>{quiz.title}</h3>
+            <div className={"list-group"}>
                 {
-                    questions.map((question) => {
-                        return (
-                            <li>
-                                <Question question={question}/>
-                            </li>
-                        )
-                    })
+                    questions.map((question) =>
+                        <div className={"list-group-item"} key={question._id}>
+                            <Question question={question}/>
+                        </div>
+                    )
                 }
-            </ul>
+            </div>
         </div>
     )
 }
