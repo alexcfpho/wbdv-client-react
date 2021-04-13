@@ -1,43 +1,53 @@
 import React, {useState} from "react";
+import ListGroup from 'react-bootstrap/ListGroup'
+import {Button, ListGroupItem} from "react-bootstrap";
 
-const MultipleChoiceQuestion = ({question}) => {
-    const [yourAnswer, setYourAnswer] = useState("")
+const MultipleChoiceQuestion = ({question, activeItem}) => {
+    const [yourAnswer, setAnswer] = useState("")
+    const [isGraded, setGradedState] = useState(false)
+
+
     return (
         <div>
             <h5>
                 {question.question}
                 {
-                    question.correct === yourAnswer &&
+                    question.correct === yourAnswer && isGraded &&
                     <i className="fas fa-check"></i>
                 }
                 {
-                    question.correct !== yourAnswer &&
+                    question.correct !== yourAnswer && isGraded &&
                     <i className="fas fa-times"></i>
                 }
             </h5>
-            <ul className="list-group">
+            <ListGroup>
                 {
-                    question.choices.map((choice) => {
+                    question.choices.map((choice, index) => {
                         return (
-                            <li className={`list-group-item
-                            ${yourAnswer === question.correct ? 'list-group-item-success' : 'list-group-item-danger'}`}>
-                                <label><input
-                                    onClick={() => {
-                                        setYourAnswer(choice)
-                                    }}
-                                    type="radio"
-                                    name={question._id}/> {choice}</label>
-                            </li>
+                            <ListGroupItem key={index} variant={`${isGraded && choice === question.correct ? "success"
+                                : isGraded && yourAnswer !== question.correct && yourAnswer === choice ? "danger" : ""}`}>
+                                <label>
+                                    <input
+                                        onClick={() => {
+                                            setAnswer(choice)
+                                        }}
+                                        type="radio"
+                                        name={question._id}/>
+                                    {choice}
+                                </label>
+                            </ListGroupItem>
                         )
                     })
                 }
-            </ul>
-            <p>
-                Your answer: {yourAnswer}
-            </p>
-            <p>{question.correct}</p>
-            <p></p>
-            <p>{question.type}</p>
+            </ListGroup>
+            <div className="mt-4">
+                <h5>You Answered:</h5> <p>{yourAnswer}</p>
+            </div>
+            <Button variant={"success"} size={"lg"} onClick={() => {
+                setGradedState(true)
+            }}>
+                Grade
+            </Button>
         </div>
     )
 }
