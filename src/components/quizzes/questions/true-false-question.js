@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TrueFalseQuestion = ({question}) => {
 
@@ -8,7 +9,17 @@ const TrueFalseQuestion = ({question}) => {
 
     return (
         <div>
-            <h5>{question.question}</h5>
+            <h5>
+                {question.question}
+                {
+                    question.correct === yourAnswer && isGraded &&
+                    <FontAwesomeIcon icon={"check"}/>
+                }
+                {
+                    question.correct !== yourAnswer && isGraded &&
+                    <FontAwesomeIcon icon={"times"}/>
+                }
+            </h5>
             <ListGroup>
                 <ListGroupItem key={"001"} variant={`${isGraded && 'true' === question.correct ? "success"
                     : isGraded && yourAnswer !== question.correct && yourAnswer === 'true' ? "danger" : ""}`}>
