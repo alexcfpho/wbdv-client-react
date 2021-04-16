@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import ListGroup from 'react-bootstrap/ListGroup'
-import {Button, ListGroupItem} from "react-bootstrap";
+import {ListGroupItem} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const MultipleChoiceQuestion = ({question}) => {
-    const [yourAnswer, setAnswer] = useState("")
-    const [isGraded, setGradedState] = useState(false)
+const MultipleChoiceQuestion = ({question, isGraded, setGradedState}) => {
 
+    const [yourAnswer, setAnswer] = useState("")
 
     return (
         <div>
@@ -53,11 +52,6 @@ const MultipleChoiceQuestion = ({question}) => {
             <div className="mt-4">
                 <h5>You Answered:</h5> <p>{yourAnswer}</p>
             </div>
-            <Button variant={"success"} size={"lg"} onClick={() => {
-                setGradedState(true)
-            }}>
-                Grade
-            </Button>
         </div>
     )
 }

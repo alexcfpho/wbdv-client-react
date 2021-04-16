@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroup, ListGroupItem} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const TrueFalseQuestion = ({question}) => {
+const TrueFalseQuestion = ({question, isGraded, setGradedState}) => {
 
     const [yourAnswer, setAnswer] = useState("")
-    const [isGraded, setGradedState] = useState(false)
 
     return (
         <div>
@@ -68,11 +67,11 @@ const TrueFalseQuestion = ({question}) => {
             <div className={"mt-4"}>
                 <h5>You Answered:</h5> <p>{yourAnswer}</p>
             </div>
-            <Button variant={"success"} size={"lg"} onClick={() => {
-                setGradedState(true)
-            }}>
-                Grade
-            </Button>
+            {/*<Button variant={"success"} size={"lg"} onClick={() => {*/}
+            {/*    setGradedState(true)*/}
+            {/*}}>*/}
+            {/*    Grade*/}
+            {/*</Button>*/}
         </div>
     )
 }
