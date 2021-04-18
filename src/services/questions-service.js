@@ -10,7 +10,7 @@ export const findAllQuestions = () =>
         .then(response => response.json())
 
 export const findQuestionById = (qid) =>
-    fetch(`${QUESTIONS_LOCAL_URL}/qid`)
+    fetch(`${QUESTIONS_LOCAL_URL}/${qid}`)
         .then(response => response.json())
 
 const api = {
