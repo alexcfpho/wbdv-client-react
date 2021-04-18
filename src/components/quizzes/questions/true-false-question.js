@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {ListGroup, ListGroupItem} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const TrueFalseQuestion = ({question, isGraded, setGradedState}) => {
+const TrueFalseQuestion = ({question, isGraded, setGradedState, setChoice}) => {
 
     const [yourAnswer, setAnswer] = useState("")
 
@@ -25,10 +25,15 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState}) => {
                     <label>
                         <input
                             type="radio"
+                            value={"true"}
                             name={question._id}
-                            onClick={() => {
-                                setAnswer("true")
+                            onChange={(e) => {
                                 setGradedState(false)
+                                setAnswer(e.target.value)
+                                setChoice(prevState => ({
+                                    ...prevState,
+                                    answer: e.target.value
+                                }))
                             }}
                         />
                         True
@@ -47,11 +52,17 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState}) => {
                                    : isGraded && yourAnswer !== question.correct && yourAnswer === 'false' ? "danger" : ""}`}>
                     <label>
                         <input type="radio"
+                               value={"false"}
                                name={question._id}
-                               onClick={() => {
-                                   setAnswer("false")
+                               onChange={(e) => {
                                    setGradedState(false)
-                               }}/>
+                                   setAnswer(e.target.value)
+                                   setChoice(prevState => ({
+                                       ...prevState,
+                                       answer: e.target.value
+                                   }))
+                               }}
+                        />
                         False
                     </label>
                     {
@@ -67,11 +78,6 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState}) => {
             <div className={"mt-4"}>
                 <h5>You Answered:</h5> <p>{yourAnswer}</p>
             </div>
-            {/*<Button variant={"success"} size={"lg"} onClick={() => {*/}
-            {/*    setGradedState(true)*/}
-            {/*}}>*/}
-            {/*    Grade*/}
-            {/*</Button>*/}
         </div>
     )
 }

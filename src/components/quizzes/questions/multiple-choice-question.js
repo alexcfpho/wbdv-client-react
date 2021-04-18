@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import {ListGroupItem} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const MultipleChoiceQuestion = ({question, isGraded, setGradedState}) => {
+const MultipleChoiceQuestion = ({question, isGraded, setGradedState, setChoice}) => {
 
     const [yourAnswer, setAnswer] = useState("")
 
@@ -28,12 +28,18 @@ const MultipleChoiceQuestion = ({question, isGraded, setGradedState}) => {
                                 : isGraded && yourAnswer !== question.correct && yourAnswer === choice ? "danger" : ""}`}>
                                 <label>
                                     <input
-                                        onClick={() => {
-                                            setAnswer(choice)
-                                            setGradedState(false)
-                                        }}
+                                        value={choice}
                                         type="radio"
-                                        name={question._id}/>
+                                        name={question._id}
+                                        onChange={(e) => {
+                                            setGradedState(false)
+                                            setAnswer(e.target.value)
+                                            setChoice(prevState => ({
+                                                ...prevState,
+                                                answer: e.target.value
+                                            }))
+                                        }}
+                                    />
                                     {choice}
                                 </label>
                                 {
