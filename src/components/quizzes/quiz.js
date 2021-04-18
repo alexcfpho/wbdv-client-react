@@ -20,6 +20,7 @@ const Quiz = () => {
             setQuiz(quiz)
         })
     }, [quizId])
+
     return (
         <div>
             <h3>{quiz.title}</h3>
@@ -28,9 +29,11 @@ const Quiz = () => {
                     questions.map((question) =>
                         <div className={"list-group-item"} key={question._id}>
                             <Question
+                                questions={questions}
                                 question={question}
                                 setGradedState={setGradedState}
                                 isGraded={isGraded}
+                                setQuestions={setQuestions}
                             />
                         </div>
                     )
@@ -39,7 +42,7 @@ const Quiz = () => {
             <Button variant={"success"} size={"lg"} className={"mt-4"} onClick={() => {
                 setGradedState(true)
                 quizService.submitQuiz(quizId, questions)
-                    .then(attempts => console.log("attempts: " + attempts))
+                    .then(attempts => attempts)
             }}>
                 Submit Answers
             </Button>
