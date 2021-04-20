@@ -1,10 +1,24 @@
-import React, {useState} from "react";
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import React, {createRef, useState} from "react";
+import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TrueFalseQuestion = ({question, isGraded, setGradedState, setChoice}) => {
 
     const [yourAnswer, setAnswer] = useState("")
+
+    const choicesRefs = []
+    const uncheckRefs = () => {
+        choicesRefs.forEach(ref => ref.current.checked = false)
+    }
+
+    const createUniqueRef = () => {
+        const newRef = createRef()
+        choicesRefs.push(newRef)
+        return newRef;
+    }
+
+    const refOne = createUniqueRef()
+    const refTwo = createUniqueRef()
 
     return (
         <div>
@@ -25,6 +39,7 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState, setChoice}) => {
                     <label>
                         <input
                             type="radio"
+                            ref={refOne}
                             value={"true"}
                             name={question._id}
                             onChange={(e) => {
@@ -52,6 +67,7 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState, setChoice}) => {
                                    : isGraded && yourAnswer !== question.correct && yourAnswer === 'false' ? "danger" : ""}`}>
                     <label>
                         <input type="radio"
+                               ref={refTwo}
                                value={"false"}
                                name={question._id}
                                onChange={(e) => {
@@ -78,6 +94,11 @@ const TrueFalseQuestion = ({question, isGraded, setGradedState, setChoice}) => {
             <div className={"mt-4"}>
                 <h5>You Answered:</h5> <p>{yourAnswer}</p>
             </div>
+            <Button onClick={
+                uncheckRefs
+            }>
+                Clear
+            </Button>
         </div>
     )
 }
