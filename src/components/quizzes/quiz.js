@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 import Question from "./questions/question";
 import questionService from "../../services/questions-service"
 import quizService from "../../services/quizzes-service"
-import {Button} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 
 const Quiz = () => {
 
@@ -11,6 +11,12 @@ const Quiz = () => {
     const [questions, setQuestions] = useState([])
     const [quiz, setQuiz] = useState({})
     const [isGraded, setGradedState] = useState(false)
+    const [isModal, setModalCall] = useState(false)
+    const [score, setScore] = useState(0)
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         questionService.findQuestionsForQuiz(quizId).then((questions) => {
@@ -20,6 +26,19 @@ const Quiz = () => {
             setQuiz(quiz)
         })
     }, [quizId])
+
+
+    useEffect(() => {
+        const fetchScore = async () => {
+            const response = await quizService.submitQuiz(quizId, questions)
+            setScore(response.score);
+        };
+
+        if (isModal) {
+            fetchScore(quizId, questions)
+        }
+
+    }, [isModal, questions])
 
     return (
         <div>
@@ -39,10 +58,40 @@ const Quiz = () => {
                     )
                 }
             </div>
+            <>
+                {
+                    isModal &&
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Attempt Score</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>You score: {score}</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={() => {
+                                handleClose()
+                                setModalCall(false)
+                            }
+                            }>
+                                Close
+                            </Button>
+                            <Button variant={"secondary"} onClick={() => {
+                                handleClose()
+                                setModalCall(false)
+                                setGradedState(false)
+                                setScore(0)
+                            }
+                            }>
+                                Reset Quiz
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+                }
+            </>
             <Button variant={"success"} size={"lg"} className={"mt-4"} onClick={() => {
                 setGradedState(true)
-                quizService.submitQuiz(quizId, questions)
-                    .then(attempts => attempts)
+                setModalCall(true)
+                handleShow()
             }}>
                 Submit Answers
             </Button>

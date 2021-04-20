@@ -25,7 +25,8 @@ const Question = ({question, isGraded, setGradedState, setQuestions, questions})
                     question={question}
                     setChoice={setChoice}
                     isGraded={isGraded}
-                    setGradedState={setGradedState}/>
+                    setGradedState={setGradedState}
+                />
             }
             {
                 question.type === "MULTIPLE_CHOICE" &&
@@ -33,7 +34,8 @@ const Question = ({question, isGraded, setGradedState, setQuestions, questions})
                     question={question}
                     setChoice={setChoice}
                     isGraded={isGraded}
-                    setGradedState={setGradedState}/>
+                    setGradedState={setGradedState}
+                />
             }
         </div>
     )
