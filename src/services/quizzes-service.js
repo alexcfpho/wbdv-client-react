@@ -17,7 +17,6 @@ export const submitQuiz = (qzid, questions) =>
             'content-type': 'application/json'
         }
     }).then(response => response.json())
-        .then(result => console.log(result))
 
 export const findAttemptsForQuiz = (qzid) =>
     fetch(`${QUIZZES_REMOTE_URL}/${qzid}/attempts`)
